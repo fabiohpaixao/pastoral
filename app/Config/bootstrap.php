@@ -106,15 +106,12 @@ Configure::write('Dispatcher.filters', array(
 ));
 
 //Site
-Configure::write('Site.url','http://localhost');
+Configure::write('Site.url','http://pastoral.videiracampinas.com.br/');
 Configure::write('Site.nome','CURSOS');
 Configure::write('Site.email','fabioh.paixao@gmail.com');
 
 //Sistema
 Configure::write('Sistema.nome','CURSOS');
-Configure::write('Sistema.aluno_id','6');
-Configure::write('Sistema.professor_id','4');
-Configure::write('Sistema.diretor_id','5');
 
 /**
  * Configures default file logging options

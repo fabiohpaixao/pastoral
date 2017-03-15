@@ -64,10 +64,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',
-		'password' => '',
-		'database' => 'videira_cursos',
+		'host' => 'mysql.videiracampinas.com.br',
+		'login' => 'videiracampina01',
+		'password' => 'rumoaos1000',
+		'database' => 'videiracampina01',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
