@@ -18,10 +18,10 @@ class UsuariosController extends AppController {
 
     public function entrar() {
 
+        //echo $this->Auth->password('teste');
+        ///echo Security::hash('fabioh', 'sha1', false);
+        //die();
         $this->layout = 'login';
-        // echo $this->Auth->password('fabioh');
-        // echo Security::hash('fabioh', 'sha1', false);
-        // die();
 
         if (!$this->request->is('post')) {
 
@@ -29,7 +29,7 @@ class UsuariosController extends AppController {
 
         }else {
 
-            // debug(;$this->Auth->login()); die();
+            //debug($this->Auth->login()); die();
 
             if(!$this->Auth->login()){ 
                 $this->Session->setFlash('Usuário e/ou senha incorreto(s)', 'Flash/erro');
@@ -96,13 +96,13 @@ class UsuariosController extends AppController {
 
             $Email = new CakeEmail();
             $Email->config('gmail')
-                ->template('Kadmin.Usuario/esqueci', 'Kadmin.master')
+                ->template('Usuario/esqueci', 'master')
                 ->viewVars(array(
                     'nome' => $usuario['Usuario']['nome'],
                     'url'   => $url,
                 ))
                 ->emailFormat('html')
-                ->from(array('me@aa.com.br' => 'KADMIN'))
+                ->from(array('fabioh.paixao@gmail.com' => 'CURSOS'))
                 ->to($usuario['Usuario']['email'])
                 ->subject('Redefinição de senha');
 
@@ -166,7 +166,7 @@ class UsuariosController extends AppController {
  */
     public function index() {
         $this->Usuario->recursive = 0;
-        $this->set('usuarios', $this->Usuario->find('all', array('conditions' => array('NOT' => array('Usuario.usuario' => 'kaynak')))));
+        $this->set('usuarios', $this->Usuario->find('all'));
     }
 
 /**

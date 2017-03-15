@@ -1,4 +1,4 @@
-<?php echo $this->element('master/head'); ?>
+<?php echo $this->element('Master/head'); ?>
 
 <div class="container">
     
@@ -6,4 +6,4 @@
     
  </div>
 
-<?php echo $this->element('master/footer'); ?>
+<?php echo $this->element('Master/footer'); ?>

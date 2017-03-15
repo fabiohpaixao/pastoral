@@ -67,7 +67,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => '',
-		'database' => 'db_gemp',
+		'database' => 'videira_cursos',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);

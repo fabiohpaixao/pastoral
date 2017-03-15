@@ -156,7 +156,7 @@
  *
  */
 
-    Configure::write('Routing.prefixes', array('kadmin'));
+   // Configure::write('Routing.prefixes', array('kadmin'));
 
 /**
  * Turn off all caching application-wide.

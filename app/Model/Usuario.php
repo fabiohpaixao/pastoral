@@ -100,6 +100,12 @@ class Usuario extends AppModel {
         )
     );
 
+/**
+ * Display field
+ *
+ * @var string
+ */
+    public $displayField = 'nome';
         /**
      * Before Save Callback
      * @param array $options
@@ -147,6 +153,41 @@ class Usuario extends AppModel {
             'fields' => '',
             'order' => ''
         )
+    );
+
+
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+    public $hasMany = array(
+        'Professor' =>
+            array(
+                'className' => 'Professor',
+                'foreignKey' => 'usuario_id',
+                'dependent' => 'false',
+                'conditions' => '',
+                'fields' => '',
+                'order' => '',
+                'limit' => '',
+                'offset' => '',
+                'finderQuery' => '',
+                'with' => ''
+            ),
+        'Aluno' =>
+            array(
+                'className' => 'Aluno',
+                'foreignKey' => 'usuario_id',
+                'dependent' => 'false',
+                'conditions' => '',
+                'fields' => '',
+                'order' => '',
+                'limit' => '',
+                'offset' => '',
+                'finderQuery' => '',
+                'with' => ''
+            )
     );
 
     /**

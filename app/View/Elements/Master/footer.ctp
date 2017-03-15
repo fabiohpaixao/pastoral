@@ -35,10 +35,10 @@
         echo $this->Html->script('/js/../assets/jquery-multi-select/js/jquery.quicksearch');
 
         //Datapicker
-        echo $this->Html->script('/js/../assets/bootstrap-datepicker/js/bootstrap-datepicker.pt-BR');
+        echo $this->Html->script('/js/../assets/bootstrap-datepicker/js/bootstrap-datepicker.pt-br');
 
         echo $this->Html->script('/js/../assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min');
-        echo $this->Html->script('/js/../assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.pt-BR');
+        echo $this->Html->script('/js/../assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.pt-br');
 
         //Tags input
         echo $this->Html->script('/js/jquery.tagsinput');

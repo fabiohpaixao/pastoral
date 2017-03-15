@@ -62,8 +62,7 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 
-Inflector::rules('plural', array('irregular' => array('material' => 'materiais')));
-Inflector::rules('plural', array('irregular' => array('materialdistribuidor' => 'materiaisdistribuidores')));
+Inflector::rules('plural', array('irregular' => array('professor' => 'professores')));
 Inflector::rules('plural', array('irregular' => array('colaborador' => 'colaboradores')));
 Inflector::rules('plural', array('irregular' => array('distribuidor' => 'distribuidores')));
 Inflector::rules('plural', array('irregular' => array('notafiscal' => 'notasfiscais')));
@@ -113,6 +112,9 @@ Configure::write('Site.email','fabioh.paixao@gmail.com');
 
 //Sistema
 Configure::write('Sistema.nome','CURSOS');
+Configure::write('Sistema.aluno_id','6');
+Configure::write('Sistema.professor_id','4');
+Configure::write('Sistema.diretor_id','5');
 
 /**
  * Configures default file logging options
@@ -130,7 +132,7 @@ CakeLog::config('error', array(
 ));
 
 
-// App::uses('ConnectionManager', 'Model');
+App::uses('ConnectionManager', 'Model');
 App::uses('Inflector', 'Utility');
 App::uses('ClassRegistry', 'Utility');
 App::uses('CakeRequest', 'Network');
