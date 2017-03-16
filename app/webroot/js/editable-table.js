@@ -5,13 +5,14 @@ var EditableTable = function () {
         //main function to initiate the module
         init: function (idTable) {
             this.idTable=idTable;
+            var adding = false;
 
             function restoreRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
 
                 for (var i = 0, iLen = jqTds.length; i < iLen; i++) {
-                    oTable.fnUpdate(aData[i], nRow, i, false);
+                    oTable.fnUpdate(aData[i], nRow, i);
                 }
 
                 oTable.fnDraw();
@@ -20,32 +21,47 @@ var EditableTable = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-				var total = jqTds.length - 2;
-				for (i = 0; i < total; i++) {
-					jqTds[i].innerHTML = '<input type="text" class="form-control small" value="' + aData[i] + '">';
-				}
-                jqTds[total].innerHTML = '<a class="edit" href="">Salvar</a>';
+                var total = jqTds.length - 2;
+                for (i = 0; i < total; i++) {
+                    jqTds[i].innerHTML = '<input type="text" class="form-control small" value="' + aData[i] + '">';
+                }
+                jqTds[total].innerHTML = '<a class="save" href="">Salvar</a>';
                 jqTds[(total + 1)].innerHTML = '<a class="cancel" href="">Cancelar</a>';
+            }
+
+            function addRow(oTable, nRow) {
+                var aData = oTable.fnGetData(nRow);
+                var jqTds = $('>td', nRow);
+				var total = jqTds.length - 2;
+                for (i = 0; i < total; i++) {
+                    jqTds[i].innerHTML = '<input type="text" class="form-control small" value="' + aData[i] + '">';
+                }
+                jqTds[total].innerHTML ='<a class="save" href="">Salvar</a>';
+                jqTds[(total + 1)].innerHTML = '<a class="cancel" data-mode="new" href="">Cancelar</a>';
+                jqTds = aData;
             }
 
             function saveRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-                oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-                oTable.fnUpdate('<a class="edit" href="">Editar</a>', nRow, 4, false);
-                oTable.fnUpdate('<a class="delete" href="">Deletar</a>', nRow, 5, false);
+
+                var total = jqInputs.length;
+                for (i = 0; i < total; i++) {
+                    oTable.fnUpdate(jqInputs[i].value, nRow, i, false);
+                }
+                oTable.fnUpdate('<a class="edit" href="">Editar</a>', nRow, total, false);
+                oTable.fnUpdate('<a class="delete" href="">Excluir</a>', nRow, (total + 1), false);
                 oTable.fnDraw();
             }
 
             function cancelEditRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-                oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-                oTable.fnUpdate('<a class="edit" href="">Editar</a>', nRow, 4, false);
+
+                var total = jqInputs.length;
+                for (i = 0; i < total; i++) {
+                    oTable.fnUpdate(jqInputs[i].value, nRow, i, false);
+                }
+                oTable.fnUpdate('<a class="edit" href="">Editar</a>', nRow, total, false);
+               // oTable.fnUpdate('<a class="delete" href="">Excluir</a>', nRow, (total + 1), false);
                 oTable.fnDraw();
             }
 
@@ -78,20 +94,24 @@ var EditableTable = function () {
             var nEditing = null;
 
             $(idTable + '_new').click(function (e) {
-                e.preventDefault();
-                var newRowArray = [];
-                //fruits[fruits.length] = "Lemon";
-                var aiNew = oTable.fnAddData(['', '', '', '',
-                        '<a class="edit" href="">Editar</a>', '<a class="cancel" data-mode="new" href="">Cancelar</a>'
-                ]);
-                var nRow = oTable.fnGetNodes(aiNew[0]);
-                editRow(oTable, nRow);
-                nEditing = nRow;
+               if(!adding){
+
+                    e.preventDefault();
+                    var newRowArray = [];
+                    var aiNew = oTable.fnAddData(['', '', '', '',
+                            '<a class="edit" href="">Editar</a>', '<a class="cancel" data-mode="new" href="">Cancelar</a>'
+                    ]);
+                    var nRow = oTable.fnGetNodes(aiNew[0]);
+
+                    addRow(oTable, nRow);
+                    nEditing = nRow;
+                    adding = true;
+                }
             });
 
             $(idTable + ' a.delete').live('click', function (e) {
                 e.preventDefault();
-
+                adding = false;
                 if (confirm("Deseja realmente excluir essa linha ?") == false) {
                     return;
                 }
@@ -103,6 +123,8 @@ var EditableTable = function () {
 
             $(idTable + ' a.cancel').live('click', function (e) {
                 e.preventDefault();
+                adding = false;
+
                 if ($(this).attr("data-mode") == "new") {
                     var nRow = $(this).parents('tr')[0];
                     oTable.fnDeleteRow(nRow);
@@ -114,7 +136,7 @@ var EditableTable = function () {
 
             $(idTable + ' a.edit').live('click', function (e) {
                 e.preventDefault();
-
+                adding = false;
                 /* Get the row as a parent of the link that was clicked on */
                 var nRow = $(this).parents('tr')[0];
 
@@ -123,16 +145,22 @@ var EditableTable = function () {
                     restoreRow(oTable, nEditing);
                     editRow(oTable, nRow);
                     nEditing = nRow;
-                } else if (nEditing == nRow && this.innerHTML == "Save") {
-                    /* Editing this row and want to save it */
-                    saveRow(oTable, nEditing);
-                    nEditing = null;
-                    alert("Updated! Do not forget to do some ajax to sync with backend :)");
                 } else {
                     /* No edit in progress - let's start one */
                     editRow(oTable, nRow);
                     nEditing = nRow;
                 }
+            });
+
+            $(idTable + ' a.save').live('click', function (e) {
+                e.preventDefault();
+                adding = false;
+                /* Get the row as a parent of the link that was clicked on */
+                var nRow = $(this).parents('tr')[0];
+
+                /* Editing this row and want to save it */
+                saveRow(oTable, nEditing);
+                nEditing = null;
             });
         }
 

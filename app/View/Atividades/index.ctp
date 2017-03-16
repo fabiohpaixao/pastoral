@@ -106,41 +106,6 @@
                     </div>
                 </div>
             </section>
-            <!--tab nav start-->
-<!--
-          <section class="panel">
-              <header class="panel-heading clearfix">
-                  <span class="pull-left"><?php echo __('Atividades da disciplina '); ?></span>
-
-                   <?php echo $this->Html->link(__('<i class="icon-plus"></i> Nova atividade'), array('controller' => 'atividades', 'action' => 'adicionar'),array('class' => 'btn btn-success btn-shadow pull-right', 'escape' => false)); ?>
-              </header>
-
-          		<table class="table table-striped border-top table-hover" id="table">
-                      <thead>
-                      <tr>
-                          <th>Nome</th>
-                          <th>Ações</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-            <?php foreach ($disciplinas as $key => $disciplina): ?>
-    						<tr class="<?php echo ($key % 2 == 0) ? 'odd' : ''; ?> gradeX">
-    							<td><?php echo $this->Html->link($disciplina, array('action' => 'visualizar', $key)) ;?></td>
-    							
-    							<td class="actions">
-
-    								<?php echo $this->Html->link(__('<i class="icon-pencil"></i> Editarar'), array('action' => 'editar',  $key), array('class' => 'btn btn-info btn-shadow', 'escape' => false)); ?>
-
-    								<?php echo $this->Form->postLink(__('<i class="icon-trash"></i> Excluir'), array('action' => 'excluir',  $key), array('class' => 'btn btn-danger btn-shadow', 'escape' => false), __('Tem certeza que deseja excluir o registro %s?', $disciplina)); ?>
-    							</td>
-    						</tr>
- 
-					<?php endforeach; ?>
-
-					</tbody>
-				</table>
-        </section>
-        -->
 		</section>
 	</div>
 </div>

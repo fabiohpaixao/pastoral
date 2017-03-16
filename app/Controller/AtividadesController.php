@@ -47,12 +47,12 @@ class AtividadesController extends AppController {
  * adicionar method
  *
  * @return void
-
+**/
     public function adicionar() {
         if ($this->request->is('post')) {
 
             //cria post
-            $this->Post->create();
+            $this->Atividade->create();
 
             //dados adicionais
             $this->Post->set('criado', null);
@@ -84,36 +84,6 @@ class AtividadesController extends AppController {
 
         }
 
-        $status = array(
-            'Rascunho' => 'Rascunho',
-            'Agendado' => 'Agendado',
-            'Publicado' => 'Publicado'
-        );
-        $this->set('status', $status);
-
-        $categorias = $this->Post->Categoria->find('list',
-            array('fields' =>
-                array( 'Categoria.nome')
-            )
-        );
-
-        $this->set('categoriasDisponiveis', json_encode($categorias));
-
-       // print_r($categorias); exit();
-
-        // $comentarios = $this->Post->Comentarios->find('list',
-        //     array(
-        //         'conditions' => array(
-        //             'NOT' => array('Grupo.nome' => 'Kadmin')
-        //         ),
-        //          'fields' => array(
-        //             'Grupo.id',
-        //             'Grupo.nome'
-        //         )
-        //     )
-        // );
-        // $this->set(compact('categorias'));
     }
 
- */
 }
