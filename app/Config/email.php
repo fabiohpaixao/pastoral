@@ -44,22 +44,14 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 
-    public $gmail = array(
-        'host' => 'ssl://smtp.gmail.com',
-        'port' => 465,
-        'username' => 'fabioh.paixao@gmail.com',
-        'password' => 'fabioh',
-        'transport' => 'Smtp'
-    );
-
 	public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('site@localhost' => 'My Site'),
-		'host' => 'localhost',
-		'port' => 25,
+		'from' => array('pastoral@videiracampinas.com.br' => 'Curso Pastoral'),
+		'host' => 'smtp.kinghost.net',
+		'port' => 587,
 		'timeout' => 30,
 		'username' => 'user',
-		'password' => 'secret',
+		'password' => 'pastoral@videiracampinas.com.br',
 		'client' => null,
 		'log' => false,
 		//'charset' => 'utf-8',
