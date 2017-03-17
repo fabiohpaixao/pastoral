@@ -57,6 +57,7 @@ class AlunosController extends AppController {
                         $newUsuario['Usuario'] = $this->request->data['Aluno'];
                         $newUsuario['Usuario']['grupo_id'] = Configure::read('Sistema.aluno_id');
                         $newUsuario['Usuario']['usuario'] = $this->request->data['Aluno']['ra'];
+                        $newUsuario['Usuario']['avatar'] = 'img/uploads/gradmale_avatar.jpg';
 
                         if ($this->Usuario->save($newUsuario)) {
 

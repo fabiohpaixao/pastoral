@@ -122,7 +122,7 @@ var Script = function () {
 
 // masks
 
-    $('.tel').mask('(99)9999-9999');
+    $('.tel').mask('(99)99999-9999');
 
 
 // datepicker

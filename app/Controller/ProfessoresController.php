@@ -51,6 +51,7 @@ class ProfessoresController extends AppController {
                         $newUsuario['Usuario'] = $this->request->data['Professor'];
                         $newUsuario['Usuario']['grupo_id'] = Configure::read('Sistema.professor_id');
                         $newUsuario['Usuario']['usuario'] = $this->request->data['Professor']['rp'];
+                        $newUsuario['Usuario']['avatar'] = 'img/uploads/gradmale_avatar.jpg';
 
                         if ($this->Usuario->save($newUsuario)) {
 
