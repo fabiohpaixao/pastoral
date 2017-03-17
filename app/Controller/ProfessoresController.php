@@ -57,11 +57,9 @@ class ProfessoresController extends AppController {
 
                         if ($this->Usuario->save($newUsuario)) {
 
-                        	$this->Professor->create();
-                        	$newProfessor['Professor']['usuario_id'] = $this->Usuario->id;
-                        	$newProfessor['Professor']['rp'] =  $this->request->data['Professor']['rp'];
-                        	$newProfessor['Professor']['nome'] = $this->request->data['Professor']['nome'];
-                        	$newProfessor['Professor']['turma_id'] = $this->request->data['Professor']['turma_id'];
+                            $this->Professor->create();
+                            $newProfessor['Professor']['usuario_id'] = $this->Usuario->id;
+                            $newProfessor['Professor']['rp'] =  $this->request->data['Professor']['rp'];
 
                         	if(!$this->Professor->save($newProfessor)){
                         		$this->Usuario->delete($this->Usuario->id);
@@ -74,8 +72,8 @@ class ProfessoresController extends AppController {
 	                                ->template('Usuario/novo', 'master')
 	                                ->viewVars(array(
 	                                    'nome_admin' => $this->Auth->user('nome'),
-	                                    'nome' => $this->Usuario->nome,
-                                        'usuario' => $this->Usuario->usuario,
+	                                    'nome' => $nome,
+                                        'usuario' => $rp,
 	                                    'grupo' => 'Professores',
 	                                    'senha'   => $senha,
 	                                    'url'   =>  Configure::read('Site.url') . Router::url(array('controller' => 'usuarios', 'action' => 'entrar')),
