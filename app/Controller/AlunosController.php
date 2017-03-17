@@ -75,9 +75,8 @@ class AlunosController extends AppController {
 	                            $Email->config('smtp')
 	                                ->template('Usuario/novo', 'master')
 	                                ->viewVars(array(
-	                                    'nome_admin' => $this->Auth->user('nome'),
-	                                    'nome' => $this->Usuario->nome,
-	                                    'usuario' => $this->Usuario->usuario,
+	                                    'nome' => $nome,
+	                                    'usuario' => $ra,
 	                                    'grupo' => 'Alunos',
 	                                    'senha'   => $senha,
 	                                    'url'   =>  Configure::read('Site.url') . Router::url(array('controller' => 'usuarios', 'action' => 'entrar')),
