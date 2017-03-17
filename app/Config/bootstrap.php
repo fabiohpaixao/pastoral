@@ -107,8 +107,8 @@ Configure::write('Dispatcher.filters', array(
 
 //Site
 Configure::write('Site.url','http://pastoral.videiracampinas.com.br/');
-Configure::write('Site.nome','CURSOS');
-Configure::write('Site.email','fabioh.paixao@gmail.com');
+Configure::write('Site.nome','Curso Pastoral');
+Configure::write('Site.email','pastoral@videiracampinas.com.br');
 
 //Sistema
 Configure::write('Sistema.nome','CURSOS');
