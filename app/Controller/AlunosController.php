@@ -17,25 +17,6 @@ class AlunosController extends AppController {
 	 */
     public function index() {
 
-        $Email = new CakeEmail();
-        $Email->config('smtp')
-            ->template('Usuario/novo', 'master')
-            ->viewVars(array(
-                'nome_admin' => 'Euuu',
-                'nome' => 'Fabio',
-                'usuario' => 'user',
-                'grupo' => 'Grupo',
-                'senha'   => 'pass',
-                'url'   =>  Configure::read('Site.url') . Router::url(array('controller' => 'usuarios', 'action' => 'entrar')),
-                'site'   => Configure::read('Site.nome')
-            ))
-            ->emailFormat('html')
-            ->from(array( Configure::read('Site.email') => Configure::read('Sistema.nome')) )
-            ->to('vavarl1@gmail.com')
-            ->subject('Você foi cadastrado(a) no Sistema de Cursos da Igreja Videira');
-
-        $Email->send();
-
         $this->Aluno->recursive = 0;
         $this->set('alunos', $this->Aluno->find('all'));
     }
@@ -87,7 +68,8 @@ class AlunosController extends AppController {
 
                         	if(!$this->Aluno->save($newAluno)){
                         		$this->Usuario->delete($this->Usuario->id);
-                        		$this->Session->setFlash('Ocorreu um erro ao tentar salvar o aluno,as tente novamente', 'Flash/erro');
+                        		$this->Session->setFlash('Ocorreu um erro ao tentar salvar o aluno, tente novamente', 'Flash/erro');
+                                echo var_dump($this->Aluno->invalidFields());
                         	}else{
 
 	                            //envia email de boas vindas
@@ -118,7 +100,7 @@ class AlunosController extends AppController {
 
                         	}
                         }else{
-
+                            echo var_dump($this->Usuario->invalidFields());
                             if (!empty($this->Usuario->data['Usuario']['avatar']) && is_string($this->Contact->data['Aluno']['avatar'])) {
                                 $this->request->data['Aluno']['avatar'] = $this->Usuario->data['Usuario']['avatar'];
                             }
