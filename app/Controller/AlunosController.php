@@ -21,7 +21,7 @@ class AlunosController extends AppController {
         $Email->config('smtp')
             ->template('Usuario/novo', 'master')
             ->viewVars(array(
-                'nome_admin' => 'Euuu'),
+                'nome_admin' => 'Euuu',
                 'nome' => 'Fabio',
                 'usuario' => 'user',
                 'grupo' => 'Grupo',
