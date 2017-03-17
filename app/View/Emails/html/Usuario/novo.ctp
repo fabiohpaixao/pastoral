@@ -16,7 +16,8 @@
     </tr>
     <tr>
         <td style="padding: 20px 0 10px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-           <strong>Usuário:</strong> <?php echo $usuario ?><br>
+            Esses dados são para você realizar seu login:<br>
+           <strong>RA (usuário):</strong> <?php echo $usuario ?><br>
            <strong>Senha:</strong> <?php echo $senha ?>
         </td>
     </tr>

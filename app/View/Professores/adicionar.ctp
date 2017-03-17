@@ -22,7 +22,7 @@
                     echo $this->Form->input('email');
                     echo $this->Form->input('confirmar_email', array('autocomplete' => 'false', 'type' => 'email'));
                     echo $this->Form->input('telefone', array('class' => 'tel form-control'));
-                    echo $this->Form->input('avatar', array('type' => 'file'));
+                    //echo $this->Form->input('avatar', array('type' => 'file'));
                 ?>    
               </div>
           </section>
