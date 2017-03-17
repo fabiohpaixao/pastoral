@@ -48,16 +48,19 @@ class ProfessoresController extends AppController {
                         //data de criacao
                         $this->Usuario->set('criado', null);
 
+                        $rp = $this->request->data['Aluno']['rp'];
+                        $nome = $this->request->data['Aluno']['nome'];
+
                         $newUsuario['Usuario'] = $this->request->data['Professor'];
                         $newUsuario['Usuario']['grupo_id'] = Configure::read('Sistema.professor_id');
-                        $newUsuario['Usuario']['usuario'] = $this->request->data['Professor']['rp'];
+                        $newUsuario['Usuario']['usuario'] = $rp;
+                    	$newUsuario['Usuario']['nome'] = $nome;
 
                         if ($this->Usuario->save($newUsuario)) {
 
-                        	$this->Professor->create();
-                        	$newProfessor['Professor']['usuario_id'] = $this->Usuario->id;
-                        	$newProfessor['Professor']['rp'] =  $this->request->data['Professor']['rp'];
-                        	$newProfessor['Professor']['nome'] = $this->request->data['Professor']['nome'];
+                            $this->Professor->create();
+                            $newProfessor['Professor']['usuario_id'] = $this->Usuario->id;
+                            $newProfessor['Professor']['rp'] =  $this->request->data['Professor']['rp'];
                         	$newProfessor['Professor']['turma_id'] = $this->request->data['Professor']['turma_id'];
 
                         	if(!$this->Professor->save($newProfessor)){
@@ -71,8 +74,8 @@ class ProfessoresController extends AppController {
 	                                ->template('Usuario/novo', 'master')
 	                                ->viewVars(array(
 	                                    'nome_admin' => $this->Auth->user('nome'),
-	                                    'nome' => $this->Usuario->nome,
-                                        'usuario' => $this->Usuario->usuario,
+	                                    'nome' => $nome,
+                                        'usuario' => $usuario,
 	                                    'grupo' => 'Professores',
 	                                    'senha'   => $senha,
 	                                    'url'   =>  Configure::read('Site.url') . Router::url(array('controller' => 'usuarios', 'action' => 'entrar')),

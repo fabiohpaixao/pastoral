@@ -49,21 +49,24 @@ class AlunosController extends AppController {
 
                         //gera senha aleatoria para usuario
                         $senha = $this->gerar_senha();
-                        $this->Usuario->data['Usuario']['senha'] = $senha;
 
                         //data de criacao
                         $this->Usuario->set('criado', null);
 
+                        $ra = $this->request->data['Aluno']['ra'];
+                        $nome = $this->request->data['Aluno']['nome'];
+
                         $newUsuario['Usuario'] = $this->request->data['Aluno'];
+                        $newUsuario['Usuario']['senha'] = $senha;
                         $newUsuario['Usuario']['grupo_id'] = Configure::read('Sistema.aluno_id');
-                        $newUsuario['Usuario']['usuario'] = $this->request->data['Aluno']['ra'];
+                        $newUsuario['Usuario']['usuario'] = $ra;
 
                         if ($this->Usuario->save($newUsuario)) {
 
                         	$this->Aluno->create();
                         	$newAluno['Aluno']['usuario_id'] = $this->Usuario->id;
-                        	$newAluno['Aluno']['ra'] =  $this->request->data['Aluno']['ra'];
-                        	$newAluno['Aluno']['nome'] = $this->request->data['Aluno']['nome'];
+                        	$newAluno['Aluno']['ra'] =  $ra;
+                        	$newAluno['Aluno']['nome'] = $nome;
                         	$newAluno['Aluno']['turma_id'] = $this->request->data['Aluno']['turma_id'];
 
                         	if(!$this->Aluno->save($newAluno)){
@@ -77,9 +80,8 @@ class AlunosController extends AppController {
 	                            $Email->config('smtp')
 	                                ->template('Usuario/novo', 'master')
 	                                ->viewVars(array(
-	                                    'nome_admin' => $this->Auth->user('nome'),
-	                                    'nome' => $this->Usuario->nome,
-	                                    'usuario' => $this->Usuario->usuario,
+	                                    'nome' => $nome,
+	                                    'usuario' => $ra;,
 	                                    'grupo' => 'Alunos',
 	                                    'senha'   => $senha,
 	                                    'url'   =>  Configure::read('Site.url') . Router::url(array('controller' => 'usuarios', 'action' => 'entrar')),
