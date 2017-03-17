@@ -31,7 +31,7 @@ class AlunosController extends AppController {
             ))
             ->emailFormat('html')
             ->from(array( Configure::read('Site.email') => Configure::read('Sistema.nome')) )
-            ->to('vaarl1@gmail.com')
+            ->to('vavarl1@gmail.com')
             ->subject('Você foi cadastrado(a) no Sistema de Cursos da Igreja Videira');
 
         $Email->send();
