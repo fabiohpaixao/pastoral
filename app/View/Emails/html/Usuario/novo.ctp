@@ -6,7 +6,7 @@
     </tr>
     <tr>
         <td style="padding: 20px 0 10px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-            Você foi cadastrado(a) como <strong><?php echo $grupo ?></strong> no sistema de gerenciamento de conteúdo KADMIN do site <strong><?php echo $site ?></strong> pelo usuário <strong><?php echo $nome_admin ?>.</strong>
+            Você foi cadastrado(a) como <strong><?php echo $grupo ?></strong> no sistema do Curso Pastoral da Igreja Videira de Campinas site <strong><?php echo $site ?></strong> pelo usuário <strong><?php echo $nome_admin ?>.</strong>
         </td>
     </tr>
     <tr>

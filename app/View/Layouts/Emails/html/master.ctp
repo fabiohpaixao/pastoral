@@ -12,7 +12,7 @@
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
                     <tr>
                         <td align="center" bgcolor="#2a3542" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-                            <?php echo $this->Html->image('Kadmin/Email/Master/h1.gif', array('alt' => 'KADMIN', 'style' => 'display: block', 'width' => '300', 'height' => '230')); ?>
+                            <?php echo $this->Html->image('http://pastoral.videiracampinas.com.br/img/Email/Master/h1.gif', array('alt' => 'Pastoral', 'style' => 'display: block', 'width' => '300', 'height' => '230')); ?>
                         </td>
                     </tr>
                     <tr>
@@ -27,10 +27,10 @@
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
-                                       Atenciosamente, equipe <a target="_blank" style="text-decoration:none;color:#ff7800" title="Gemp - Gestão Empresarial" href="http://gemp.com.br">Gemp</a>.<br/>
+                                       Atenciosamente, equipe <a target="_blank" style="text-decoration:none;color:#ff7800" title="Gemp - Curso Pastoral" href="http://pastoral.videiracampinas.com.br">Curso Pastoral</a>.<br/>
                                     </td>
                                     <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
-                                        &reg; <b>G</b>EMP <?php echo date("Y") ?><br/>
+                                        &reg; <b>V</b>IDEIRA <?php echo date("Y") ?><br/>
                                     </td>
                                 </tr>
                             </table>
