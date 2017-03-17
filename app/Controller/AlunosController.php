@@ -55,14 +55,14 @@ class AlunosController extends AppController {
 
                         $newUsuario['Usuario'] = $this->request->data['Aluno'];
                         $newUsuario['Usuario']['grupo_id'] = Configure::read('Sistema.aluno_id');
-                        $newUsuario['Usuario']['usuario'] = $this->request->data['Aluno']['ra'];
+                        $newUsuario['Usuario']['usuario'] = $ra;
+                    	$newUsuario['Usuario']['nome'] = $nome;
 
                         if ($this->Usuario->save($newUsuario)) {
 
-                        	$this->Aluno->create();
-                        	$newAluno['Aluno']['usuario_id'] = $this->Usuario->id;
-                        	$newAluno['Aluno']['ra'] =  $this->request->data['Aluno']['ra'];
-                        	$newAluno['Aluno']['nome'] = $this->request->data['Aluno']['nome'];
+                            $this->Aluno->create();
+                            $newAluno['Aluno']['usuario_id'] = $this->Usuario->id;
+                            $newAluno['Aluno']['ra'] =  $ra;
                         	$newAluno['Aluno']['turma_id'] = $this->request->data['Aluno']['turma_id'];
 
                         	if(!$this->Aluno->save($newAluno)){

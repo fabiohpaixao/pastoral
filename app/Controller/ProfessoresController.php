@@ -43,7 +43,6 @@ class ProfessoresController extends AppController {
 
                         //gera senha aleatoria para usuario
                         $senha = $this->gerar_senha();
-                        $this->Usuario->data['Usuario']['senha'] = $senha;
 
                         //data de criacao
                         $this->Usuario->set('criado', null);
@@ -52,6 +51,7 @@ class ProfessoresController extends AppController {
                         $nome = $this->request->data['Professor']['nome'];
 
                         $newUsuario['Usuario'] = $this->request->data['Professor'];
+                        $newUsuario['Usuario']['senha'] = $senha;
                         $newUsuario['Usuario']['grupo_id'] = Configure::read('Sistema.professor_id');
                         $newUsuario['Usuario']['usuario'] = $this->request->data['Professor']['rp'];
 
@@ -59,7 +59,7 @@ class ProfessoresController extends AppController {
 
                             $this->Professor->create();
                             $newProfessor['Professor']['usuario_id'] = $this->Usuario->id;
-                            $newProfessor['Professor']['rp'] =  $this->request->data['Professor']['rp'];
+                            $newProfessor['Professor']['rp'] =  $rp;
 
                         	if(!$this->Professor->save($newProfessor)){
                         		$this->Usuario->delete($this->Usuario->id);
