@@ -48,8 +48,8 @@ class ProfessoresController extends AppController {
                         //data de criacao
                         $this->Usuario->set('criado', null);
 
-                        $rp = $this->request->data['Aluno']['rp'];
-                        $nome = $this->request->data['Aluno']['nome'];
+                        $rp = $this->request->data['Professor']['rp'];
+                        $nome = $this->request->data['Professor']['nome'];
 
                         $newUsuario['Usuario'] = $this->request->data['Professor'];
                         $newUsuario['Usuario']['grupo_id'] = Configure::read('Sistema.professor_id');
