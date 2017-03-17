@@ -6,6 +6,15 @@ App::uses('AppController', 'Controller');
  */
 class AtividadesController extends AppController {
 
+    public $components = array('RequestHandler');
+
+    
+    public function beforeFilter() 
+    {
+        parent::beforeFilter();
+        $this->Security->unlockedActions = array('add', 'edit', 'delete');
+    }
+
 /**
  * Scaffold
  *
@@ -28,7 +37,7 @@ class AtividadesController extends AppController {
         $this->Disciplina->recursive = 1;
         $disciplinas = $this->Disciplina->find('all', $options);
 
-        //print_r($disciplinas);
+        //debug($disciplinas);       die();
 
         $turmas = array();
         foreach ($disciplinas as $key => $disciplina) {
@@ -38,7 +47,7 @@ class AtividadesController extends AppController {
                 $turmas[] = $disciplina['Turma'];
             }
         }
-        //print_r($turmas);
+
         $this->set('disciplinas', $disciplinas);
         $this->set('turmas', $turmas);
     }
@@ -48,42 +57,70 @@ class AtividadesController extends AppController {
  *
  * @return void
 **/
-    public function adicionar() {
-        if ($this->request->is('post')) {
+    public function add() {
+        $atividade = $this->request->data;
 
-            //cria post
-            $this->Atividade->create();
+        $this->Atividade->create();
+        $this->Atividade->recursive = 0;
 
-            //dados adicionais
-            $this->Post->set('criado', null);
-            
-            $slug = $this->Create_slug($this->request->data['Post']['titulo']);
-            $this->Post->set('slug', $slug);
-
-            if($this->request->data['Post']['status'] == 'Agendado'){
-
-                // fix formato da data
-                $publicar = date('Y-m-d h:i:s', strtotime( str_replace('/', '-', $this->request->data['Post']['publicar'])));
-                $finalizar = date('Y-m-d h:i:s', strtotime( str_replace('/', '-', $this->request->data['Post']['finalizar'])));
-
-                $this->request->data['Post']['publicar']  = $publicar;
-                $this->request->data['Post']['finalizar'] = $finalizar;
-               
-            }
-
-            $usuario = $this->Auth->user();
-            $this->Post->set('usuario_id',  $usuario['id']);
-
-            if ($this->Post->save($this->request->data)) {
-
-                $this->Session->setFlash(__('Post adicionado com sucesso'), 'Flash/sucesso');
-                return $this->redirect(array('action' => 'index'));
-
-            }else
-                $this->Session->setFlash('Ocorreu um erro ao tentar salvar o post, tente novamente', 'Flash/erro');
-
+        if($this->Atividade->save($atividade)){
+            $message = 'A atividade foi adicionada com sucesso!';
+            $status = 200;
+        } else {
+            $message = 'Ops, ocorreu um erro ao adicionar atividade ';// . print_r($errors, true);
+            $status = 500;// . print_r($errors, true);
         }
 
+        $this->set(array(
+            'message' => $message,
+            'id' => $this->Atividade->id,
+            'status' => $status,
+            '_serialize' => array('message', 'id', 'status')
+        ));
+           
+    }
+    /**
+     * adicionar method
+     *
+     * @return void
+    **/
+    public function edit($id) {
+        $atividade = $this->request->data;
+
+        $this->Atividade->id = $id;
+        $this->Atividade->recursive = 0;
+       
+        if($this->Atividade->save($atividade)){
+            $message = 'A atividade foi alterada com sucesso!';
+            $status = 500;
+        } else {
+            $message = 'Ops, ocorreu um erro ao alterar atividade';
+            $status = 500;
+        }
+
+        $this->set(array(
+            'message' => $message,
+            'id' => $this->Atividade->id,
+            'status' => $status,
+            '_serialize' => array('message', 'id', 'status')
+        ));
+           
+    }
+
+    public function delete($id) {
+        if ($this->Atividade->delete($id)) {
+            $message = 'A atividade foi deletada com sucesso!';
+            $status = 200;
+        } else {
+            $message = 'Ops, ocorreu um erro ao deletar atividade';// . print_r($errors, true);
+            $status = 500;
+        }
+
+        $this->set(array(
+            'message' => $message,
+            'status' => $status,
+            '_serialize' => array('message', 'status')
+        ));
     }
 
 }

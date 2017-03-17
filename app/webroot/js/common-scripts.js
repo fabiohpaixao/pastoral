@@ -180,10 +180,6 @@ var Script = function () {
         var v = $("#MaterialValor").val();
         var table = $('.table-ditribuidores');
         var cont = table.find("tbody tr").length + 1;
-        // console.log(d_id);
-        // console.log(d_val);
-        // console.log(v);
-        // console.log(cont);
         var txt = '<tr><td>'+cont+'</td><td>'+d_val+'<input name="data[Distribuidor][id]" value="' + d_id + '" class="form-control " type="hidden" id="DistribuidorId" ></td> <td>'+v+'<input name="data[Distribuidor][valor]" value="'+v+'" class="form-control" type="hidden" id="DistribuidorValor"></td><td><button class="btn btn-danger btn-shadow del" type="button" >Excluir</button></td></tr>';
         // console.log(txt);
         table.find('tbody').append(txt);
@@ -212,4 +208,23 @@ var Script = function () {
     $("table#table-especialidades").on('click', 'button.del', function(){
         $(this).parent().parent().remove();
     });
+
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "rtl": false,
+      "positionClass": "toast-bottom-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": 300,
+      "hideDuration": 1000,
+      "timeOut": 5000,
+      "extendedTimeOut": 1000,
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
 }();

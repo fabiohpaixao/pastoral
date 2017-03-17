@@ -50,9 +50,13 @@
         //Mask Money
         echo $this->Html->script('/js/mask-money');
         
+        //toastr
+        echo $this->Html->script('/js/../assets/toastr/js/toastr.min');
+
         //Render
         echo $this->Html->script('/js/common-scripts');
         echo $this->fetch('script');
+
 
     ?>
 

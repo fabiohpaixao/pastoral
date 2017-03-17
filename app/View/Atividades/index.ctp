@@ -60,13 +60,13 @@
                                         <div class="adv-table editable-table ">
                                             <div class="clearfix">
                                                 <div class="btn-group">
-                                                    <button id="atividade<?= $disciplina['Disciplina']['id'] ?>_new" class="btn green">
+                                                    <button id="atividade<?= $disciplina['Disciplina']['id'] ?>_new" class="btn green"  callback="callbackAtividadeSave">
                                                         Adicionar Atividade <i class="icon-plus"></i>
                                                     </button>
                                                 </div>
                                             </div>
                                           <div class="space15"></div>
-                                          <table class="table table-striped table-hover table-bordered tables-atividade" id="atividade<?= $disciplina['Disciplina']['id'] ?>">
+                                          <table class="table table-striped table-hover table-bordered tables-atividade" id="atividade<?= $disciplina['Disciplina']['id'] ?>" disciplina-id="<?= $disciplina['Disciplina']['id'] ?>" >
                                               <thead>
                                                   <tr>
                                                       <th>Nome</th>
@@ -76,24 +76,14 @@
                                                   </tr>
                                               </thead>
                                               <tbody>
-                                                  <tr class="">
-                                                      <td>Prova</td>
-                                                      <td class="right">7</td>
-                                                      <td><a class="edit" href="javascript:;">Editar</a></td>
+                                                <?php foreach ($disciplina['Atividade'] as $atividade): ?>
+                                                  <tr class="" atividade-id="<?= $atividade['id'] ?>" callback="callbackAtividadeSave">
+                                                      <td><?= $atividade['descricao'] ?></td>
+                                                      <td class="right"><?= $atividade['peso'] ?></td>
+                                                      <td><a class="edit" href="javascript:;">Editar</a><a class="save hide" href="javascript:;">Salvar</a></td>
                                                       <td><a class="delete" href="javascript:;">Excluir</a></td>
                                                   </tr>
-                                                  <tr class="">
-                                                      <td>Trabalho</td>
-                                                      <td class="rignt">2</td>
-                                                      <td><a class="edit" href="javascript:;">Editar</a></td>
-                                                      <td><a class="delete" href="javascript:;">Excluir</a></td>
-                                                  </tr>
-                                                  <tr class="">
-                                                      <td>Quenstionario</td>
-                                                      <td class="right">1</td>
-                                                      <td><a class="edit" href="javascript:;">Editar</a></td>
-                                                      <td><a class="delete" href="javascript:;">Excluir</a></td>
-                                                  </tr>
+                                                <?php endforeach; ?>
                                               </tbody>
                                           </table>
                                       </div>

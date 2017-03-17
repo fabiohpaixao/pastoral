@@ -41,7 +41,7 @@
 	CakePlugin::routes();
 
 
-	Router::mapResources("propostas");
+	Router::mapResources("atividades");
 	Router::parseExtensions();
 	Router::resourceMap(array(
 		array('action' => 'index', 'method' => 'GET', 'id' => false),

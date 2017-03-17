@@ -8,7 +8,26 @@ App::uses('AppModel', 'Model');
  */
 class Atividade extends AppModel {
     
-   public $displayField = 'nome';
+    /**
+     * Use table
+     *
+     * @var mixed False or table name
+     */
+        public $useTable = 'atividades';
+
+    /**
+     * Name class
+     *
+     * @var mixed False or class name
+     */
+        public $name = 'Atividade'; 
+
+    /**
+     * Display field
+     *
+     * @var string
+     */
+        public $displayField = 'desricao';
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -32,21 +51,8 @@ class Atividade extends AppModel {
     public $hasMany = array(
         'Nota'=>array(
            'className'=>'Nota',
-           'foreignKey'=>'aluno_id',
+           'foreignKey'=>'atividade_id',
            'dependent' => false,
-            'conditions' => '',
-            'fields' => '',
-            'order' => '',
-            'limit' => '',
-            'offset' => '',
-            'exclusive' => '',
-            'finderQuery' => '',
-            'counterQuery' => ''
-        ),
-        'Frequencia' => array(
-            'className' => 'Frequencia',
-            'foreignKey' => 'aluno_id',
-            'dependent' => false,
             'conditions' => '',
             'fields' => '',
             'order' => '',
