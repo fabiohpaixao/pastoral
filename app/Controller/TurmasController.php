@@ -27,7 +27,7 @@ class TurmasController extends AppController {
  * adicionar method
  *
  * @return void
- */
+ *//*
     public function adicionar() {
 
         if ($this->request->is('post')){  
@@ -51,7 +51,7 @@ class TurmasController extends AppController {
  * @throws NotFoundException
  * @param string $id
  * @return void
- */
+ *//*
     public function editar($id = null) {
         if (!$this->Turma->exists($id)) {
             throw new NotFoundException(__('Turma inválido'));
@@ -71,5 +71,5 @@ class TurmasController extends AppController {
             $this->request->data = $this->Turma->find('first', $options);
             $this->set('turma', $this->Turma->find('first', $options));
         }
-    }
+    }*/
 }
