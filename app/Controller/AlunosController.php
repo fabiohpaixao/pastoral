@@ -81,7 +81,7 @@ class AlunosController extends AppController {
 	                                ->template('Usuario/novo', 'master')
 	                                ->viewVars(array(
 	                                    'nome' => $nome,
-	                                    'usuario' => $ra;,
+	                                    'usuario' => $ra,
 	                                    'grupo' => 'Alunos',
 	                                    'senha'   => $senha,
 	                                    'url'   =>  Configure::read('Site.url') . Router::url(array('controller' => 'usuarios', 'action' => 'entrar')),
