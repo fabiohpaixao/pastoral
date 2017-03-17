@@ -71,8 +71,8 @@ class ProfessoresController extends AppController {
 	                                ->template('Usuario/novo', 'master')
 	                                ->viewVars(array(
 	                                    'nome_admin' => $this->Auth->user('nome'),
-	                                    'nome' => $this->request->data['Usuario']['nome'],
-	                                    'usuario' => $this->request->data['Usuario']['usuario'],
+	                                    'nome' => $this->Usuario->nome,
+                                        'usuario' => $this->Usuario->usuario,
 	                                    'grupo' => 'Professores',
 	                                    'senha'   => $senha,
 	                                    'url'   =>  Configure::read('Site.url') . Router::url(array('controller' => 'usuarios', 'action' => 'entrar')),
