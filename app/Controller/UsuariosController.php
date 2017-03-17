@@ -95,7 +95,7 @@ class UsuariosController extends AppController {
                    $token;
 
             $Email = new CakeEmail();
-            $Email->config('gmail')
+            $Email->config('smtp')
                 ->template('Usuario/esqueci', 'master')
                 ->viewVars(array(
                     'nome' => $usuario['Usuario']['nome'],
@@ -240,7 +240,7 @@ class UsuariosController extends AppController {
 
                             //envia email de boas vindas
                             $Email = new CakeEmail();
-                            $Email->config('gmail')
+                            $Email->config('smtp')
                                 ->template('Usuario/novo', 'master')
                                 ->viewVars(array(
                                     'nome_admin' => $this->Auth->user('nome'),

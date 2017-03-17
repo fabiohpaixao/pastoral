@@ -67,7 +67,7 @@ class ProfessoresController extends AppController {
 
 	                            //envia email de boas vindas
 	                            $Email = new CakeEmail();
-	                            $Email->config('gmail')
+	                            $Email->config('smtp')
 	                                ->template('Usuario/novo', 'master')
 	                                ->viewVars(array(
 	                                    'nome_admin' => $this->Auth->user('nome'),
