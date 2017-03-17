@@ -26,7 +26,9 @@
         //Autocomplete
         echo $this->Html->css('/css/jquery.autocomplete');
        
-
+        //toastr
+        echo $this->Html->css('/css/../assets/toastr/css/toastr.min');
+       
 
         //Custom styles for this template (index)
         echo $this->Html->css('/css/style.css');

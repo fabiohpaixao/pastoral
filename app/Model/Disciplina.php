@@ -52,4 +52,20 @@ class Disciplina extends AppModel {
         )
     );
 
+    public $hasMany = array(
+        'Atividade'=>array(
+           'className'=>'Atividade',
+           'foreignKey'=>'disciplina_id',
+           'dependent' => false,
+            'conditions' => '',
+            'fields' => '',
+            'order' => '',
+            'limit' => '',
+            'offset' => '',
+            'exclusive' => '',
+            'finderQuery' => '',
+            'counterQuery' => ''
+        )
+    );
+
 }
