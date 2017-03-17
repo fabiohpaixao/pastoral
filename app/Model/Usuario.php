@@ -119,6 +119,8 @@ class Usuario extends AppModel {
         // a file has been uploaded so grab the filepath
         if (!empty($this->data[$this->alias]['filepath'])) {
             $this->data[$this->alias]['avatar'] = $this->data[$this->alias]['filepath'];
+        }else{
+            $this->data[$this->alias]['avatar'] = 'img/uploads/gradmale_avatar.jpg';
         }
         
         return parent::beforeSave($options);
