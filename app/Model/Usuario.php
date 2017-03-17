@@ -120,7 +120,7 @@ class Usuario extends AppModel {
         if (!empty($this->data[$this->alias]['filepath'])) {
             $this->data[$this->alias]['avatar'] = $this->data[$this->alias]['filepath'];
         }else{
-            $this->data[$this->alias]['avatar'] = 'img/uploads/gradmale_avatar.jpg';
+            $this->data[$this->alias]['avatar'] = 'img/uploads/photo.jpg';
         }
         
         return parent::beforeSave($options);
