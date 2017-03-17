@@ -173,7 +173,7 @@ var Script = function () {
     // });
 
 //Add distribuidor em materiais
-
+/*
     $("section.distribuidores").on('click', '#add-dist', function(){
         var d_id = $("#MaterialDistribuidores").val();
         var d_val = $("#MaterialDistribuidores").text();
@@ -188,9 +188,9 @@ var Script = function () {
     $("table.table-ditribuidores").on('click', 'button.del', function(){
         $(this).parent().parent().remove();
     });
-
+*/
 //Add distribuidor em materiais
-
+/*
     $('form#OrcamentoAdicionarForm').on('click', 'button#add-especialidade' , function(){
         var table = $('#table-especialidades');
 
@@ -207,7 +207,7 @@ var Script = function () {
     
     $("table#table-especialidades").on('click', 'button.del', function(){
         $(this).parent().parent().remove();
-    });
+    });*/
 
     toastr.options = {
       "closeButton": true,
