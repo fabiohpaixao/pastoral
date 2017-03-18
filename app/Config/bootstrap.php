@@ -66,9 +66,9 @@ Inflector::rules('plural', array('irregular' => array('professor' => 'professore
 Inflector::rules('plural', array('irregular' => array('colaborador' => 'colaboradores')));
 Inflector::rules('plural', array('irregular' => array('distribuidor' => 'distribuidores')));
 Inflector::rules('plural', array('irregular' => array('notafiscal' => 'notasfiscais')));
-// Inflector::rules('plural', array('irregular' => array('materiais' => 'materials')));
-// Inflector::rules('singular', array('irregular' => array('material' => 'materiai')));
-// Inflector::rules('singular', array('uninflected' => array('singulars'), 'irregular' => array('materials' => 'materiais')));
+Inflector::rules('plural', array('irregular' => array('material' => 'materiais')));
+//Inflector::rules('singular', array('irregular' => array('material' => 'materiai')));
+//Inflector::rules('singular', array('uninflected' => array('singulars'), 'irregular' => array('materials' => 'materiais')));
 
 /**
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call

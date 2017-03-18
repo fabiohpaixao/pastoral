@@ -19,7 +19,16 @@ class Professor extends AppModel {
  *
  * @var mixed False or class name
  */
-    public $name = 'Professor'; 
+    public $name = 'Professor';
+
+    public function beforeDelete($cascade = true) {
+        
+        $this->clearDisciplina($this->id);
+    }
+
+    function clearDisciplina($id){
+        $this->Disciplina->updateAll(array("professor_id"=>NULL),array("professor_id"=>$id));
+    }
 
 /**
  * belongsTo associations
