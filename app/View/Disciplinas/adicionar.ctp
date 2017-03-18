@@ -5,11 +5,11 @@
 
 ?>
 <div class="row">
-    <?php echo $this->Form->create('Disiciplina'); ?>
+    <?php echo $this->Form->create('Disciplina'); ?>
     <div class="col-lg-9">
         <section class="panel">
             <header class="panel-heading clearfix">
-              <span class="pull-left"><i class="icon-plus"></i> <?php echo __('Adicionar Disiciplina'); ?></span>
+              <span class="pull-left"><i class="icon-plus"></i> <?php echo __('Adicionar Disciplina'); ?></span>
 
               <?php echo $this->Html->link(__('<i class="icon-chevron-left"></i> Voltar'), array('action' => 'index'), array('class' => 'btn btn-default btn-shadow pull-right', 'escape' => false)); ?>
 

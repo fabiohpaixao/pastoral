@@ -227,7 +227,9 @@
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <?php echo $this->Html->image(str_replace('img/', '', $usuarioLogado['avatar']), array('style'=> 'width:20px;')); ?>
+                            <?php 
+                                $avatar = (!empty($usuarioLogado['avatar'])) ? str_replace('img/', '', $usuarioLogado['avatar']) : 'avatar-default.jpg';
+                                echo $this->Html->image($avatar, array('style'=> 'width:20px;')); ?>
                             <span class="username">
                                 <?php echo (!empty($usuarioLogado)) ? $usuarioLogado['nome'] : ''; ?>
                             </span>

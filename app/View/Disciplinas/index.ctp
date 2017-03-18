@@ -27,7 +27,11 @@
                         <td><?php echo h($disciplina['Disciplina']['nome']); ?></td>
                         <td><?php echo h($disciplina['Turma']['nome']); ?></td>
                         <?php if(isset($disciplina['Professor']['Usuario'])): ?>
-                            <td><?php echo h($disciplina['Professor']['Usuario']['nome']); ?></td>
+                            <td>
+                                <?php
+                                    echo $this->Html->link($disciplina['Professor']['Usuario']['nome'], array('controller' => 'professores', 'action' => 'visualizar', $disciplina['Professor']['id']), array('class' => 'btn btn-primary', 'style' => 'border:none; background: #' . substr(dechex(crc32($disciplina['Professor']['Usuario']['nome'])), 0, 6)));
+                                ?>
+                            </td>
                         <?php else: ?>
                             <td></td>
                         <?php endif; ?>
