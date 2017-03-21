@@ -64,7 +64,7 @@
                                               <th class="col-md-1"><i class="icon-barcode"></i> RA</th>
                                               <th><i class="icon-group"></i> Nome</th>
                                               <?php foreach ($disciplina['Atividade'] as $atividade): ?>
-                                                <th class="col-md-2"><i class="icon-book"></i> <?php echo $atividade['descricao'] ?></th>
+                                                <th class="col-md-1"><i class="icon-book"></i> <?php echo $atividade['descricao'] ?></th>
                                               <?php endforeach; ?>
                                               <th class="col-md-1"></th>
                                           </tr>
@@ -72,17 +72,32 @@
                                           <tbody>
                                             <?php foreach ($alunos as $aluno): ?>
                                               <?php if($aluno['Aluno']['turma_id'] != $disciplina['Disciplina']['turma_id']) continue; ?>
-                                              <tr>
+                                              <tr aluno-id="<?php $aluno['Aluno']['id']  ?>">
                                                   <td><?php echo $aluno['Aluno']['ra'] ?></td>
                                                   <td><?php echo $aluno['Usuario']['nome'] ?></td>
                                                   <?php foreach ($disciplina['Atividade'] as $atividade): ?>
-                                                    <td><input type="number" class="form-control" width="10px" name=""></td>
+                                                    <td class="notas-atividades" atividade-id="<?php echo $atividade['id'] ?>">
+                                                      <?php 
+                                                        $notaAluno='';
+                                                        foreach ($aluno['Nota'] as $nota) {
+                                                          if($nota['atividade_id'] == $atividade['id']){
+                                                            $notaAluno = $nota;
+                                                            break;
+                                                          }
+                                                        }
+
+                                                        if($notaAluno): ?>
+                                                          <span class="nota-aluno"><?php echo $notaAluno['valor'] ?></span>
+                                                          <input type="number" nota-id="<?php echo $notaAluno['id'] ?>" class="form-control hide nota-aluno width="10px" name="">
+                                                        <?php else: ?>
+                                                          <span></span>
+                                                        <?php endif; ?>
+                                                    </td>
                                                   <?php endforeach; ?>
-                                                  <th>
-                                                    <button class="btn btn-success btn-xs"><i class="icon-ok"></i></button>
-                                                    <button class="btn btn-primary btn-xs"><i class="icon-pencil"></i></button>
-                                                    <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
-                                                  </th>
+                                                  <td class="edit-notas">
+                                                    <button class="btn btn-success btn-ms hide tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Salvar" ><i class="icon-ok"></i></button>
+                                                    <button class="btn btn-primary btn-ms tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Editar" ><i class="icon-pencil"></i></button>
+                                                  </td>
                                               </tr>
                                             <?php endforeach; ?>
                                           </tbody>

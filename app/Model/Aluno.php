@@ -40,6 +40,48 @@ class Aluno extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
+    /**
+     * After Save Callback
+     * @param booleam $created
+     * @param array $options
+     * @return boolean
+     */
+    public function afterSave($created, $options = array()){
+        if($created)
+            $this->createNotas($this->data);
+    }
+
+    function createNotas($data){
+        //$disciplina = $this->Disciplina->findById($data['Atividade']['disciplina_id']);
+        
+        App::import('model','Disciplina');
+        App::import('model','Atividade');
+        $model_disciplina = new Disciplina();
+        $model_atividade = new Atividade();
+
+        $disciplinas = $model_disciplina->find('all', array('conditions' => array('turma_id' =>  $data['Aluno']['turma_id'])));
+
+        foreach ($disciplinas as $disciplina) {
+           
+            $atividades = $model_atividade->find('all', array('conditions' => array('disciplina_id' =>  $disciplina['Disciplina']['id'])));
+
+            foreach ($atividades as $atividade) {
+                $notas[] = array('Nota' => array('atividade_id' => $atividade['Atividade']['id'], 'aluno_id' => $data['Aluno']['id'], 'valor' => 0));
+            }
+        }
+
+        $this->Nota->saveMany($notas);
+    }
+
+    /**
+     * Before Delete Callback
+     * @param booleam $cascade
+     * @return boolean
+     */
+    public function beforeDelete($cascade = true) {
+        
+        $this->Nota->deleteAll(array("aluno_id"=>$this->id));
+    }
 
 /**
  * belongsTo associations

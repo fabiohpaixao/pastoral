@@ -32,6 +32,40 @@ class Atividade extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
+    /**
+     * After Save Callback
+     * @param booleam $created
+     * @param array $options
+     * @return boolean
+     */
+    public function afterSave($created, $options = array()){
+        if($created)
+            $this->createNotas($this->data);
+    }
+
+    function createNotas($data){
+        $disciplina = $this->Disciplina->findById($data['Atividade']['disciplina_id']);
+        
+        App::import('model','Aluno');
+        $model_aluno = new Aluno();
+        $alunos = $model_aluno->find('all', array('conditions' => array('turma_id' =>  $disciplina['Disciplina']['turma_id'])));
+
+        foreach ($alunos as $aluno) {
+            $notas[] = array('Nota' => array('atividade_id' => $data['Atividade']['id'], 'aluno_id' => $aluno['Aluno']['id'], 'valor' => 0));
+        }
+
+        $this->Nota->saveMany($notas);
+    }
+
+    /**
+     * Before Delete Callback
+     * @param booleam $cascade
+     * @return boolean
+     */
+    public function beforeDelete($cascade = true) {
+        
+        $this->Nota->deleteAll(array("atividade_id"=>$this->id));
+    }
 
 /**
  * belongsTo associations

@@ -44,6 +44,10 @@ a, a:hover, a:focus {
     border: 1px solid #ccc;
 }
 
+.hide {
+    display: none;
+}
+
 /*login page*/
 
 .login-body {
