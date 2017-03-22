@@ -133,7 +133,7 @@ class AlunosController extends AppController {
 		);
 		$result = $this->Aluno->query("SELECT Auto_increment FROM information_schema.tables AS NextId  WHERE table_name='alunos'");
     	$ra = $result[0]['NextId']['Auto_increment'];
-    	$ra = 'RA' . str_pad($ra, 8, "0", STR_PAD_LEFT);
+    	$ra = 'RA' . str_pad($ra, 4, "0", STR_PAD_LEFT);
 	
 		$this->set('ra', $ra);
        

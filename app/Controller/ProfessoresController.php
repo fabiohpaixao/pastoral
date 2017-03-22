@@ -121,7 +121,7 @@ class ProfessoresController extends AppController {
 		$result = $this->Professor->query("SELECT Auto_increment FROM information_schema.tables AS NextId  WHERE table_name='professores'");
 		
     	$rp = $result[0]['NextId']['Auto_increment'];
-    	$rp = 'RP' . str_pad($rp, 8, "0", STR_PAD_LEFT);
+    	$rp = 'RP' . str_pad($rp, 4, "0", STR_PAD_LEFT);
 	
 		$this->set('rp', $rp);
        
