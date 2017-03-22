@@ -72,7 +72,7 @@
                                           <tbody>
                                             <?php foreach ($alunos as $aluno): ?>
                                               <?php if($aluno['Aluno']['turma_id'] != $disciplina['Disciplina']['turma_id']) continue; ?>
-                                              <tr aluno-id="<?php $aluno['Aluno']['id']  ?>">
+                                              <tr aluno-id="<?php echo $aluno['Aluno']['id']  ?>">
                                                   <td><?php echo $aluno['Aluno']['ra'] ?></td>
                                                   <td><?php echo $aluno['Usuario']['nome'] ?></td>
                                                   <?php foreach ($disciplina['Atividade'] as $atividade): ?>

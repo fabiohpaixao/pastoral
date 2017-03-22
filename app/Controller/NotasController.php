@@ -63,24 +63,43 @@ class NotasController extends AppController {
  * @return void
 **/
     public function add() {
-        $atividade = $this->request->data;
+        $notas = $this->request->data;
 
-        $this->Atividade->create();
-        $this->Atividade->recursive = 0;
+        $dataSource = $this->Nota->getDataSource();
 
-        if($this->Atividade->save($atividade)){
-            $message = 'A atividade foi adicionada com sucesso!';
+        //debug($notas['Nota']); die();
+        
+        $dataSource->begin();
+        
+        try {
+
+            foreach ($notas['Nota'] as $nota) {
+
+                $this->Nota->id = $nota['id'];
+                $this->Nota->atividade_id = $nota['atividade_id'];
+                $this->Nota->valor = $nota['valor'];
+                $this->Nota->aluno_id = $nota['aluno_id'];
+                $this->Nota->recursive = 0;
+                                
+                if(!$this->Nota->save())
+                   throw new Exception("Error Processing Request");
+
+            }
+
+            $dataSource->commit();
+            $message = 'A nota foi adicionada com sucesso!';
             $status = 200;
-        } else {
-            $message = 'Ops, ocorreu um erro ao adicionar atividade ';// . print_r($errors, true);
+        } catch (Exception $e) {
+            $dataSource->rollback();
+            $message = 'Ops, ocorreu um erro ao adicionar nota ';// . print_r($errors, true);
             $status = 500;// . print_r($errors, true);
         }
 
+
         $this->set(array(
             'message' => $message,
-            'id' => $this->Atividade->id,
             'status' => $status,
-            '_serialize' => array('message', 'id', 'status')
+            '_serialize' => array('message', 'status')
         ));
            
     }
