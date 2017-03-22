@@ -66,9 +66,6 @@ class NotasController extends AppController {
         $notas = $this->request->data;
 
         $dataSource = $this->Nota->getDataSource();
-
-        //debug($notas['Nota']); die();
-        
         $dataSource->begin();
         
         try {
@@ -76,12 +73,12 @@ class NotasController extends AppController {
             foreach ($notas['Nota'] as $nota) {
 
                 $this->Nota->id = $nota['id'];
-                $this->Nota->atividade_id = $nota['atividade_id'];
-                $this->Nota->valor = $nota['valor'];
-                $this->Nota->aluno_id = $nota['aluno_id'];
-                $this->Nota->recursive = 0;
-                                
-                if(!$this->Nota->save())
+
+                $newNota['Nota']['atividade_id'] = $nota['atividade_id'];
+                $newNota['Nota']['valor'] = $nota['valor'];
+                $newNota['Nota']['aluno_id'] = $nota['aluno_id'];
+   
+                if(!$this->Nota->save($newNota))
                    throw new Exception("Error Processing Request");
 
             }
@@ -91,8 +88,8 @@ class NotasController extends AppController {
             $status = 200;
         } catch (Exception $e) {
             $dataSource->rollback();
-            $message = 'Ops, ocorreu um erro ao adicionar nota ';// . print_r($errors, true);
-            $status = 500;// . print_r($errors, true);
+            $message = 'Ops, ocorreu um erro ao adicionar nota ';
+            $status = 500;
         }
 
 

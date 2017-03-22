@@ -66,7 +66,7 @@
                                               <?php foreach ($disciplina['Atividade'] as $atividade): ?>
                                                 <th class="col-md-1"><i class="icon-book"></i> <?php echo $atividade['descricao'] ?></th>
                                               <?php endforeach; ?>
-                                              <th class="col-md-1"></th>
+                                              <th class="col-md-2"></th>
                                           </tr>
                                           </thead>
                                           <tbody>
@@ -96,6 +96,7 @@
                                                   <?php endforeach; ?>
                                                   <td class="edit-notas">
                                                     <button class="btn btn-success btn-ms hide tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Salvar" ><i class="icon-ok"></i></button>
+                                                    <button class="btn btn-danger btn-ms hide tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Cancelar" ><i class="icon-times"></i></button>
                                                     <button class="btn btn-primary btn-ms tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Editar" ><i class="icon-pencil"></i></button>
                                                   </td>
                                               </tr>
