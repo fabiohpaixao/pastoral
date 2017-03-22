@@ -53,7 +53,8 @@ class ProfessoresController extends AppController {
                         $newUsuario['Usuario'] = $this->request->data['Professor'];
                         $newUsuario['Usuario']['senha'] = $senha;
                         $newUsuario['Usuario']['grupo_id'] = Configure::read('Sistema.professor_id');
-                        $newUsuario['Usuario']['usuario'] = $this->request->data['Professor']['rp'];
+                        $newUsuario['Usuario']['usuario'] = $rp;
+                    	$newUsuario['Usuario']['nome'] = $nome;
 
                         if ($this->Usuario->save($newUsuario)) {
 

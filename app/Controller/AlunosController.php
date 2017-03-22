@@ -48,12 +48,15 @@ class AlunosController extends AppController {
 
                         //gera senha aleatoria para usuario
                         $senha = $this->gerar_senha();
-                        $this->Usuario->data['Usuario']['senha'] = $senha;
 
                         //data de criacao
                         $this->Usuario->set('criado', null);
 
+                        $ra = $this->request->data['Aluno']['ra'];
+                        $nome = $this->request->data['Aluno']['nome'];
+
                         $newUsuario['Usuario'] = $this->request->data['Aluno'];
+                        $newUsuario['Usuario']['senha'] = $senha;
                         $newUsuario['Usuario']['grupo_id'] = Configure::read('Sistema.aluno_id');
                         $newUsuario['Usuario']['usuario'] = $ra;
                     	$newUsuario['Usuario']['nome'] = $nome;
