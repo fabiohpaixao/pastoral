@@ -49,7 +49,7 @@ function callbackAtividadeSave(obj, del) {
 				toastr["error"](data.message);
 		},
 		error: function(xhr,textStatus,error){
-			toastr["error"](data.message);
+			toastr["error"](xhr.message);
 		}
 	}).responseText);
 	
