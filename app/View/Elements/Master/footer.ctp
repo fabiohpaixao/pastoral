@@ -12,11 +12,11 @@
         echo $this->Html->script('/js/jquery.nicescroll');
 
         //Tables
-        //echo $this->Html->script('/js/../assets/data-tables/jquery.dataTables');
-        //echo $this->Html->script('/js/../assets/data-tables/DT_bootstrap');
-        echo $this->Html->script('/js/../assets/data-tables/DataTables-1.10.13/js/jquery.dataTables.min');
-        echo $this->Html->script('/js/../assets/data-tables/FixedColumns-3.2.2/js/dataTables.fixedColumns.min');
-        echo $this->Html->script('/js/../assets/data-tables/DataTables-1.10.13/js/dataTables.bootstrap.min');
+        echo $this->Html->script('/js/../assets/data-tables/jquery.dataTables');
+        echo $this->Html->script('/js/../assets/data-tables/DT_bootstrap');
+        //echo $this->Html->script('/js/../assets/data-tables/DataTables-1.10.13/js/jquery.dataTables.min');
+        //echo $this->Html->script('/js/../assets/data-tables/FixedColumns-3.2.2/js/dataTables.fixedColumns.min');
+        //echo $this->Html->script('/js/../assets/data-tables/DataTables-1.10.13/js/dataTables.bootstrap.min');
         //echo $this->Html->script('/js/../assets/data-tables/Responsive-2.1.1/js/responsive.bootstrap.min');
         echo $this->Html->script('/js/dynamic-table');
         /*
