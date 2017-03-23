@@ -30,8 +30,8 @@
         echo $this->Html->css('/css/../assets/toastr/css/toastr.min');
 
         //DataTable
-        echo $this->Html->css('/css/../assets/data-tables/DataTables-1.10.13/css/dataTables.bootstrap.min');
-        echo $this->Html->css('/css/../assets/data-tables/FixedColumns-3.2.2/css/fixedColumns.bootstrap.min');
+        //echo $this->Html->css('/css/../assets/data-tables/DataTables-1.10.13/css/dataTables.bootstrap.min');
+        //echo $this->Html->css('/css/../assets/data-tables/FixedColumns-3.2.2/css/fixedColumns.bootstrap.min');
         //echo $this->Html->css('/css/../assets/data-tables/Responsive-2.1.1/css/responsive.bootstrap.min.css');
         /*
         <link rel="stylesheet" type="text/css" href="DataTables-1.10.13/css/dataTables.bootstrap.min.css"/>
