@@ -9,7 +9,7 @@
             <header class="panel-heading clearfix">
                 <span class="pull-left"><?php echo __('Disciplinas'); ?></span>
                 
-                <?php echo $this->Html->link(__('<i class="icon-plus"></i> Nova Disciplina'), array('controller' => 'disciplina', 'action' => 'adicionar'),array('class' => 'btn btn-success btn-shadow pull-right', 'escape' => false)); ?>
+                <?php echo $this->Html->link(__('<i class="icon-plus"></i> Nova Disciplina'), array('controller' => 'disciplinas', 'action' => 'adicionar'),array('class' => 'btn btn-success btn-shadow pull-right', 'escape' => false)); ?>
             </header>
 
             <table class="table table-striped border-top table-hover" id="table">
