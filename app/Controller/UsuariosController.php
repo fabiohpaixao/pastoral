@@ -155,7 +155,7 @@ class UsuariosController extends AppController {
                 $this->Usuario->saveField('token_expira', null);
 
                 $this->Session->setFlash('Senha alterada com sucesso', 'Flash/sucesso');
-                return $this -> Redirect(array('action' => 'entrar'));
+                return $this->Redirect(array('controller' => 'usuarios','action' => 'entrar'));
 
             }
         }
@@ -261,7 +261,7 @@ class UsuariosController extends AppController {
                             if($Email->send()){
 
                                 $this->Session->setFlash(__('Usuário adicionado com sucesso'), 'Flash/sucesso');
-                                return $this->redirect(array('action' => 'index'));
+                                return $this->Redirect(array('controller' => 'usuarios','action' => 'index'));
 
                             }else
                                 $this->Session->setFlash('Ocorreu um erro ao enviar o email para o novo usuário, entre em contato manualmente', 'Flash/erro');
@@ -326,7 +326,7 @@ class UsuariosController extends AppController {
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Usuario->save($this->request->data)) {
                 $this->Session->setFlash(__('Usuário salvo com sucesso'), 'Flash/sucesso');
-                return $this->redirect(array('action' => 'index'));
+                return $this->Redirect(array('controller' => 'usuarios','action' => 'index'));
             } else {
                 $this->Session->setFlash(__('Não foi possivel salvar o usuário, tente novamente'),  'Flash/erro');
             }
@@ -367,7 +367,7 @@ class UsuariosController extends AppController {
                     $this->Cookie->delete('Usuario');
 
                     $this->Session->setFlash(__('Senha alterada com sucesso'), 'Flash/sucesso');
-                    $this->redirect(array('action'=>'index'));
+                    return $this->Redirect(array('controller' => 'usuarios','action' => 'index'));
                 
                 }else
                     $this->Session->setFlash(__('Confirmaçãa de senha incorreta'), 'Flash/erro');
