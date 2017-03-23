@@ -90,7 +90,7 @@ class UsuariosController extends AppController {
 
 
             $token = Security::hash(String::uuid(),'sha1',true);
-            $url = Router::url(array('controller' => 'usuarios', 'action' => 'redefinir')) .'/'.
+            $url = Configure::read('Site.url') . Router::url(array('controller' => 'usuarios', 'action' => 'redefinir')) .'/'.
                    $usuario['Usuario']['id'] . '/' .
                    $token;
 
