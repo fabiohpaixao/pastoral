@@ -118,8 +118,8 @@ class UsuariosController extends AppController {
             $this->Usuario->saveField('token_expira', $date);
 
             $this->Session->setFlash('Um link para redifinição de senha foi enviado para ' . $this->data['Usuario']['email'], 'Flash/sucesso');
-            return $this -> Redirect(array('controller' => 'usuarios','action' => 'entrar'));
-
+            
+            return $this->Redirect(array('controller' => 'usuarios','action' => 'entrar'));
         }
     }
 
@@ -129,7 +129,8 @@ class UsuariosController extends AppController {
         if (!$this->request->is(array('get', 'post'))) {
 
             $this->Session->setFlash('Você precisa de uma chave para redefinir sua senha', 'Flash/erro');
-            return $this -> Redirect(array('action' => 'entrar'));
+            
+            return $this->Redirect(array('controller' => 'usuarios','action' => 'entrar'));
 
         }else{
 
@@ -138,7 +139,8 @@ class UsuariosController extends AppController {
 
             if(!$usuario){
                 $this->Session->setFlash('A redifinição de senha para este usuário não existe ou expirou', 'Flash/erro');
-                return $this -> Redirect(array('action' => 'entrar'));
+                
+                return $this->Redirect(array('controller' => 'usuarios','action' => 'entrar'));
             }
 
             // checa data de expiração
