@@ -102,7 +102,7 @@ class UsuariosController extends AppController {
                     'url'   => $url,
                 ))
                 ->emailFormat('html')
-                ->from(array('fabioh.paixao@gmail.com' => 'CURSOS'))
+                ->from(array( Configure::read('Site.email') => Configure::read('Sistema.nome')) )
                 ->to($usuario['Usuario']['email'])
                 ->subject('Redefinição de senha');
 
@@ -355,7 +355,7 @@ class UsuariosController extends AppController {
             $usuario = $this->Usuario->find('first', $options);
             $senha = $usuario['Usuario']['senha'];
 
-            if(Security::hash($this->request->data['Usuario']['senha_atual']) == $senha || $usuarioLogado['usuario'] == 'kaynak'){
+            if(Security::hash($this->request->data['Usuario']['senha_atual']) == $senha){
 
                 if($this->request->data['Usuario']['nova_senha'] === $this->request->data['Usuario']['confirmar_senha']){
 
