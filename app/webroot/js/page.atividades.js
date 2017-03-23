@@ -6,7 +6,6 @@ jQuery(document).ready(function() {
  	});
 
 });
-//$(".tables-atividade a.save").live('click', function (e) {
 
 function callbackAtividadeSave(obj, del) {
 	var nRow = $(obj).parents('tr');

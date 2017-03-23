@@ -64,7 +64,7 @@ var EditableTable = function () {
                 for (i = 0; i < total; i++) {
                     oTable.fnUpdate(jqInputs[i].value, nRow, i, false);
                 }
-                oTable.fnUpdate('<a class="edit" href="">Editar</a>', nRow, total, false);
+                oTable.fnUpdate('<a class="edit" href="">Editar</a>', nRow,  (total + 1), false);
                // oTable.fnUpdate('<a class="delete" href="">Excluir</a>', nRow, (total + 1), false);
                 oTable.fnDraw();
             }
@@ -75,6 +75,11 @@ var EditableTable = function () {
                     [5, 15, 20, "Todas"] // change per page values here
                 ],
                 // set the initial value
+                "fixedColumns": true,
+                "scrollY": "300px",
+                "scrollX": true,
+                "scrollCollapse": true,
+
                 "iDisplayLength": 5,
                 "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
                 "sPaginationType": "bootstrap",
@@ -162,13 +167,13 @@ var EditableTable = function () {
 
             $(idTable + ' a.edit').live('click', function (e) {
                 e.preventDefault();
-                adding = false;
+                adding = true;
                 /* Get the row as a parent of the link that was clicked on */
                 var nRow = $(this).parents('tr')[0];
 
                 if (nEditing !== null && nEditing != nRow) {
                     /* Currently editing - but not this row - restore the old before continuing to edit mode */
-                    restoreRow(oTable, nEditing);
+                    //restoreRow(oTable, nEditing);
                     editRow(oTable, nRow);
                     nEditing = nRow;
                 } else {

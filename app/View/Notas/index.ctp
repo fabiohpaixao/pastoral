@@ -86,9 +86,10 @@
                                                           }
                                                         }
 
-                                                        if($notaAluno): ?>
+                                                        if($notaAluno):
+                                                        ?>
                                                           <span class="nota-aluno"><?php echo $notaAluno['valor'] ?></span>
-                                                          <input type="number" nota-id="<?php echo $notaAluno['id'] ?>" class="form-control hide nota-aluno width="10px" name="">
+                                                          <input type="number" nota-id="<?php echo $notaAluno['id'] ?>" class="form-control hide nota-aluno" width="10px" name="">
                                                         <?php else: ?>
                                                           <span></span>
                                                         <?php endif; ?>
@@ -105,11 +106,9 @@
                                       </table>
                                               
                                       <!-- page end-->
-                                  </section>
-                                  </div>
                                 </section>
-                                <!-- page end-->
                             </div>
+                            <!-- page end-->
                             <?php $active = ''; ?>
                         <?php endforeach; ?>
                     </div>

@@ -92,7 +92,7 @@ class AtividadesController extends AppController {
        
         if($this->Atividade->save($atividade)){
             $message = 'A atividade foi alterada com sucesso!';
-            $status = 500;
+            $status = 200;
         } else {
             $message = 'Ops, ocorreu um erro ao alterar atividade';
             $status = 500;
