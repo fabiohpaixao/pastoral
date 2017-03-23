@@ -28,7 +28,7 @@ class FrequenciasController extends AppController {
  * @return void
  */
     public function index() {
-       /* $usuario = $this->Auth->user();
+        $usuario = $this->Auth->user();
 
         $this->loadModel('Disciplina');
         $this->Disciplina->create();
@@ -36,8 +36,6 @@ class FrequenciasController extends AppController {
         $options = array('conditions' => array('usuario_id' =>  $usuario['id']));
         $this->Disciplina->recursive = 1;
         $disciplinas = $this->Disciplina->find('all', $options);
-
-        //debug($disciplinas);       die();
 
         $turmas = array();
         foreach ($disciplinas as $key => $disciplina) {
@@ -49,7 +47,14 @@ class FrequenciasController extends AppController {
         }
 
         $this->set('disciplinas', $disciplinas);
-        $this->set('turmas', $turmas);*/
+        $this->set('turmas', $turmas);
+
+        $this->loadModel('Aluno');
+
+        $alunos = $this->Aluno->find('threaded' , array('recursive' => 1, 'fields' => array('id', 'ra', 'turma_id', 'Usuario.nome'), 'order' => 'turma_id, Usuario.nome'));
+        //debug($alunos);       die();
+        $this->set('alunos', $alunos);
+
     }
 
 /**
