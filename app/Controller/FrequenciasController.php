@@ -63,26 +63,27 @@ class FrequenciasController extends AppController {
  * @return void
 **/
     public function add() {
-        $atividade = $this->request->data;
-
-        $this->Atividade->create();
-        $this->Atividade->recursive = 0;
-
-        if($this->Atividade->save($atividade)){
-            $message = 'A atividade foi adicionada com sucesso!';
-            $status = 200;
-        } else {
-            $message = 'Ops, ocorreu um erro ao adicionar atividade ';// . print_r($errors, true);
-            $status = 500;// . print_r($errors, true);
+        $frequencias = $this->request->data;
+        //debug($frequencias); die();
+        
+        $novaFrequencia = [];
+        
+        foreach ($frequencias['Frequencia']['presenca'] as $frequencia) {
+            if(!$frequencia) continue;
+            $nova['Frequencia']['data'] = date('Y-m-d', strtotime($frequencias['Frequencia']['data']));
+            $nova['Frequencia']['disciplina_id'] = $frequencias['Frequencia']['disciplina_id'];
+            $nova['Frequencia']['aluno_id'] = $frequencia;
+            $nova['Frequencia']['presenca'] = 1;
+            $novaFrequencia[] = $nova;
         }
+        //debug($novaFrequencia); die();
+        if($this->Frequencia->saveMany($novaFrequencia)){
+            $this->Session->setFlash('Frequência adicionada com sucesso', 'Flash/sucesso');
+        }else
+            $this->Session->setFlash('Ocorreu um erro ao tentar salvar a frequência, tente novamente', 'Flash/erro');
 
-        $this->set(array(
-            'message' => $message,
-            'id' => $this->Atividade->id,
-            'status' => $status,
-            '_serialize' => array('message', 'id', 'status')
-        ));
-           
+        return $this->redirect(array('controller' => 'frequencias','action' => 'index'));
+   
     }
     /**
      * adicionar method
@@ -112,7 +113,7 @@ class FrequenciasController extends AppController {
            
     }
 
-    public function delete($id) {
+   /* public function delete($id) {
         if ($this->Atividade->delete($id)) {
             $message = 'A atividade foi deletada com sucesso!';
             $status = 200;
@@ -126,6 +127,6 @@ class FrequenciasController extends AppController {
             'status' => $status,
             '_serialize' => array('message', 'status')
         ));
-    }
+    }*/
 
 }
