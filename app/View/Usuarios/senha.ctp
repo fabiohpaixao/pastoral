@@ -17,8 +17,7 @@
               <div class="panel-body">
                   <div class="panel-body">
                     <?php
-                        if($usuarioLogado['usuario'] != 'kaynak')
-                            echo $this->Form->input('senha_atual', array('type' => 'password', 'required'));
+                        echo $this->Form->input('senha_atual', array('type' => 'password', 'required'));
                         echo $this->Form->input('nova_senha', array('type' => 'password', 'required'));
                         echo $this->Form->input('confirmar_senha', array('type' => 'password', 'required'));
                     ?>

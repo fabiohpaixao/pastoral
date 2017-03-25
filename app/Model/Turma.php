@@ -48,11 +48,11 @@ class Turma extends AppModel {
 
 	/**
 	* Valiaveis
-	public $transporte = array(0 => 'SIM', 1 => 'NÃO' 2 => 'V');
-	public $jp_nf = array(0 => 'SIM', 1 => 'NÃO' 2 => 'V');
-	public $jp_boleto = array(0 => 'SIM', 1 => 'NÃO' 2 => 'V');
-	
 	*/
+	//public $transporte = array(0 => 'SIM', 1 => 'NÃO' 2 => 'V');
+	//public $jp_nf = array(0 => 'SIM', 1 => 'NÃO' 2 => 'V');
+	//public $jp_boleto = array(0 => 'SIM', 1 => 'NÃO' 2 => 'V');
+	
 
     public function beforeSave($options = array()) {
         if (!empty($this->data['Turma']['data_inicio'])) {

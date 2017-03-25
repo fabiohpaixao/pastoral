@@ -55,16 +55,15 @@
                                         Frequencias de <?= $disciplina['Disciplina']['nome'] ?>
                                     </header>
                                     <div class="panel-body">
-                                      <a type="button" class="btn btn-success pull-right" data-toggle="modal" href="#myModal"><i class="icon-plus"></i> Adicionar Frequência </a>
+                                      <a type="button" class="btn btn-success pull-right" data-toggle="modal" href="#modal-frequencia"><i class="icon-plus"></i> Adicionar Frequência </a>
                                       <table class="table table-striped table-advance table-hover">
                                           <thead>
                                           <tr>
-                                              <th class="col-md-1"><i class="icon-barcode"></i> RA</th>
-                                              <th><i class="icon-group"></i> Nome</th>
-                                              <?php foreach ($disciplina['Atividade'] as $atividade): ?>
-                                                <th class="col-md-1"><i class="icon-book"></i> <?php echo $atividade['descricao'] ?></th>
+                                              <th width="100px"><i class="icon-barcode"></i> RA</th>
+                                              <th width="150px"><i class="icon-group"></i> Nome</th>
+                                              <?php foreach ($disciplina['Frequencia'] as $frequencia): ?>
+                                                <th  width="10px"><i class="icon-book"></i> <?php echo date ( 'd/m', $frequencia['data']) ?></th>
                                               <?php endforeach; ?>
-                                              <th class="col-md-2"></th>
                                           </tr>
                                           </thead>
                                           <tbody>
@@ -73,31 +72,11 @@
                                               <tr aluno-id="<?php echo $aluno['Aluno']['id']  ?>">
                                                   <td><?php echo $aluno['Aluno']['ra'] ?></td>
                                                   <td><?php echo $aluno['Usuario']['nome'] ?></td>
-                                                  <?php foreach ($disciplina['Atividade'] as $atividade): ?>
-                                                    <td class="notas-atividades" atividade-id="<?php echo $atividade['id'] ?>">
-                                                      <?php 
-                                                        $notaAluno='';
-                                                        foreach ($aluno['Nota'] as $nota) {
-                                                          if($nota['atividade_id'] == $atividade['id']){
-                                                            $notaAluno = $nota;
-                                                            break;
-                                                          }
-                                                        }
-
-                                                        if($notaAluno):
-                                                        ?>
-                                                          <span class="nota-aluno"><?php echo $notaAluno['valor'] ?></span>
-                                                          <input type="number" nota-id="<?php echo $notaAluno['id'] ?>" class="form-control hide nota-aluno" width="10px" name="">
-                                                        <?php else: ?>
-                                                          <span></span>
-                                                        <?php endif; ?>
+                                                  <?php foreach ($aluno['Frequencia'] as $frequencia): ?>
+                                                    <td>
+                                                          <span> <?php echo $frequencia['presenca'] ? 'x' : '-'; ?> </span>
                                                     </td>
                                                   <?php endforeach; ?>
-                                                  <td class="edit-notas">
-                                                    <button class="btn btn-success btn-ms hide tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Salvar" ><i class="icon-ok"></i></button>
-                                                    <button class="btn btn-danger btn-ms hide tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Cancelar" ><i class="icon-times"></i></button>
-                                                    <button class="btn btn-primary btn-ms tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Editar" ><i class="icon-pencil"></i></button>
-                                                  </td>
                                               </tr>
                                             <?php endforeach; ?>
                                           </tbody>
@@ -117,22 +96,46 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade " id="modal-frequencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Default Modal Tittle</h4>
+                <h4 class="modal-title">Adicionar Frequencia</h4>
             </div>
-            <div class="modal-body">
-
-                Body goes here...
-
-            </div>
-            <div class="modal-footer">
-                <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                <button class="btn btn-success" type="button">Save changes</button>
-            </div>
+            <?php echo $this->Form->create('Frequencia', array('action' => 'add')); ?>
+                <div class="modal-body">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <div class="form-group required">
+                                <label for="FrequenciaData" class="col-sm-3 control-label">Data</label>
+                                <div class="col-sm-5">
+                                    <input name="data[Frequencia][data]" class="form-control" type="date" id="FrequenciaData" required="required">
+                                </div>
+                            </div>
+                            <?php
+                                //echo $this->Form->input('Frequencia.data', $this->CustomInputs->getInput('date'));
+                                echo $this->Form->input('Frequencia.disciplina_id', array('type' => 'hidden', 'value' => $disciplinas[0]['Disciplina']['id']));
+                                foreach ($alunos as $aluno):
+                                    echo $this->Form->input('Frequencia.presenca', array(
+                                        'name' => 'data[Frequencia][presenca][]',
+                                        'label' => $aluno['Usuario']['nome'],
+                                        'value' => $aluno['Aluno']['id'],
+                                        'checked' => 'checked',
+                                        'multiple' => 'checkbox',
+                                        'between' => '<div class="col-sm-9"><div class="switch switch-square">', 
+                                        'after' => '</div></div>')
+                                    );
+                                endforeach; 
+                            ?>
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <?php echo $this->Form->button('<i class="icon-close"></i> Cancelar', array('type' => 'reset', 'data-dismiss' => "modal", 'class' => 'btn btn-default btn-shadow', 'escape' => false)); ?>
+                    <?php echo $this->Form->button('<i class="icon-save"></i> Salvar', array('type' => 'submit', 'class' => 'btn btn-success btn-shadow', 'escape' => false)); ?>
+                </div>
+            <?php echo $this->Form->end(); ?>
         </div>
     </div>
 </div>
