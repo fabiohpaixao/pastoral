@@ -27,6 +27,27 @@ class Disciplina extends AppModel {
  */
     // public $virtualFields = array('valores' => 'SUM(valor)');
 
+/*
+    public function beforeSave($options = array()) {
+        if (!empty($this->data['Disciplina']['data_inicio'])) {
+
+            $this->data['Disciplina']['data_inicio'] = $this->dateFormatBeforeSave(
+                $this->data['Disciplina']['data_inicio']
+            );
+        }
+        if (!empty($this->data['Disciplina']['data_fim'])) {
+
+            $this->data['Disciplina']['data_fim'] = $this->dateFormatBeforeSave(
+                $this->data['Disciplina']['data_fim']
+            );
+        }
+        return true;
+    }
+
+    public function dateFormatBeforeSave($dateString) {
+        return date('Y-m-d', strtotime($dateString));
+    }
+*/
 /**
  * Display field
  *
@@ -68,7 +89,7 @@ class Disciplina extends AppModel {
         ),
         'Frequencia' => array(
             'className' => 'Frequencia',
-            'foreignKey' => 'aluno_id',
+            'foreignKey' => 'disciplina_id',
             'dependent' => false,
             'conditions' => '',
             'fields' => '',

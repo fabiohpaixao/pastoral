@@ -38,7 +38,7 @@
                     <?php $active = 'active'; ?>
                     <?php foreach ($disciplinas as $disciplina): ?>
                         <li class="<?= $active ?>">
-                            <a data-toggle="tab" href="#<?= $disciplina['Disciplina']['id'] ?>"><?= $disciplina['Disciplina']['nome'] ?></a>
+                            <a data-toggle="tab" class="change-disciplina" href="#<?= $disciplina['Disciplina']['id'] ?>"><?= $disciplina['Disciplina']['nome'] ?></a>
                         </li>
                         <?php $active = ''; ?>
                     <?php endforeach; ?>
@@ -61,22 +61,42 @@
                                           <tr>
                                               <th width="100px"><i class="icon-barcode"></i> RA</th>
                                               <th width="150px"><i class="icon-group"></i> Nome</th>
-                                              <?php foreach ($disciplina['Frequencia'] as $frequencia): ?>
-                                                <th  width="10px"><i class="icon-book"></i> <?php echo date ( 'd/m', $frequencia['data']) ?></th>
-                                              <?php endforeach; ?>
+                                              <?php if(array_key_exists($disciplina['Disciplina']['id'], $aulas)): ?>
+                                                    <?php foreach ($aulas[$disciplina['Disciplina']['id']] as $aula): ?>
+                                                        <th  width="10px" style="font-size:10px;transform: rotate(90deg);padding:0"> <?php echo date('d/m', strtotime($aula)) ?></th>
+                                                    <?php endforeach; ?>
+                                              <?php endif; ?>
+                                              <th></th>
                                           </tr>
                                           </thead>
                                           <tbody>
-                                            <?php foreach ($alunos as $aluno): ?>
+                                              <?php foreach ($alunos as $aluno): ?>
                                               <?php if($aluno['Aluno']['turma_id'] != $disciplina['Disciplina']['turma_id']) continue; ?>
                                               <tr aluno-id="<?php echo $aluno['Aluno']['id']  ?>">
-                                                  <td><?php echo $aluno['Aluno']['ra'] ?></td>
-                                                  <td><?php echo $aluno['Usuario']['nome'] ?></td>
-                                                  <?php foreach ($aluno['Frequencia'] as $frequencia): ?>
-                                                    <td>
-                                                          <span> <?php echo $frequencia['presenca'] ? 'x' : '-'; ?> </span>
-                                                    </td>
-                                                  <?php endforeach; ?>
+                                                <td><?php echo $aluno['Aluno']['ra'] ?></td>
+                                                <td><?php echo $aluno['Usuario']['nome'] ?></td>
+                                                <?php if(array_key_exists($disciplina['Disciplina']['id'], $aulas)): ?>
+                                                    <?php foreach ($aulas[$disciplina['Disciplina']['id']] as $aula): ?>
+                                                         <td style="padding:0">
+                                                            <span>
+                                                                    <?php 
+                                                                        $text=''; 
+                                                                        foreach ($aluno['Frequencia'] as $frequencia):
+                                                                            $text='';
+                                                                            if($frequencia['data'] == $aula && $frequencia['presenca']){
+                                                                                $text= 'x'; 
+                                                                                break;
+                                                                            }
+                                                                            else
+                                                                                $text= '-';
+
+                                                                        endforeach;
+                                                                        echo $text; 
+                                                                    ?>
+                                                                </span>
+                                                        </td>
+                                                    <?php endforeach; ?>
+                                                  <?php endif; ?>
                                               </tr>
                                             <?php endforeach; ?>
                                           </tbody>

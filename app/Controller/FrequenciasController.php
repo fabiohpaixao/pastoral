@@ -46,8 +46,14 @@ class FrequenciasController extends AppController {
             }
         }
 
+        $options = array('fields' => array('id', 'data', 'disciplina_id'), 'order' => array('data ASC'), "group" => array('disciplina_id', 'data'));
+        $aulas = $this->Frequencia->find('list', $options);
+
+       // debug($aulas); die();
         $this->set('disciplinas', $disciplinas);
         $this->set('turmas', $turmas);
+        $this->set('aulas', $aulas);
+
 
         $this->loadModel('Aluno');
 
