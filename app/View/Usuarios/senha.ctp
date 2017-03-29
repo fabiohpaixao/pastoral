@@ -40,6 +40,6 @@
             </div>
         </section>
     </div>
-
+    <?php echo $this->Form->end(); ?>
      
 </div>
