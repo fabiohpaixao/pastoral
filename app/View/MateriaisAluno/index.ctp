@@ -72,7 +72,7 @@
                                                   <tr>
                                                     <td><?= $material['Material']['titulo'] ?></td>
                                                       <td class="right">
-                                                        <?php echo (strlen($material['Material']['arquivo']) > 2) ? $this->Html->link(basename($material['Material']['arquivo']), $material['Material']['arquivo'], array('target' => '_blank')) : '' ?>
+                                                        <?php echo (strlen($material['Material']['arquivo']) > 2) ? $this->Html->link(basename($material['Material']['arquivo']), array('controller' => 'materiais_aluno','action' => 'download',$material['Material']['id']), array('target' => '_blank')) : '' ?>
                                                     </td>
                                                     <td>
                                                         <?php echo (strlen($material['Material']['url']) > 2) ? $this->Html->link('Acessar', $material['Material']['url'], array('target' => '_blank')) : '' ?>

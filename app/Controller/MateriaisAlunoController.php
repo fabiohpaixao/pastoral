@@ -52,6 +52,27 @@ class MateriaisAlunoController extends AppController {
     }
 
 
+    /**
+     * Download do material
+     *
+     * @param int $id
+     * @return void
+     */
+    public function download($id){
+        $this->loadModel('Material');
+        $this->Material->create();
+
+        $material = $this->Material->findById($id);
+
+        //debug($material);die();
+        $this->response->file($material['Material']['arquivo'], array(
+            'download' => true,
+            'name' => basename($material['Material']['arquivo']),
+        ));
+        return $this->response;
+    }
+
+
 /**
  * add method
  *
