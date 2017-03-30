@@ -7,7 +7,9 @@
                 <div data-original-title="Esconder menu lateral" data-placement="right" class="icon-reorder tooltips"></div>
             </div>
             <!--logo start-->
-            <a href="#" class="logo">C<span>URSOS</span></a>
+            <a href="#" class="logo">
+                <?php  echo $this->Html->image('logo.jpg', array('alt' => Configure::read('Sistema.nome'))); ?>
+            </a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -237,11 +239,13 @@
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
+                            <?php if ($usuarioLogado['grupo_id'] != Configure::read('Sistema.aluno_id') && $usuarioLogado['grupo_id'] != Configure::read('Sistema.professor_id')): ?>
                             <li>
                                 <?php echo $this->Html->link(__('<i class=" icon-suitcase"></i> Perfil'), array('controller' => 'usuarios', 'action' => 'editar', $usuarioLogado['id']), array('escape' => false)); ?>
                             </li>
                             <li><a href="#"><i class="icon-cog"></i> Configurações</a></li>
                             <li><a href="#"><i class="icon-bell-alt"></i> Notificações</a></li>
+                            <?php endif; ?>
                             <li><?php echo $this->Html->link('<i class="icon-key"></i> Sair', array('controller' => 'usuarios', 'action' => 'sair'), array('escape' => false)); ?></li>
                         </ul>
                     </li>
