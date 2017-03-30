@@ -1,38 +1,5 @@
 <!--state overview start-->
 <div class="row state-overview">
-
-  <div class="col-lg-3 col-sm-6">
-    <section class="panel">
-        <div class="weather-bg">            
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-12">
-                      <i class="icon-book"></i>
-                        Materia
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer class="weather-category">
-            <ul>
-                <li class="active">
-                    <h5>Faltas</h5>
-                    56%
-                </li>
-                <li>
-                    <h5>Media</h5>
-                    5
-                </li>
-                <li>
-                    <h5>Status</h5>
-                    Aprovado
-                </li>
-            </ul>
-        </footer>
-
-    </section>
-  </div>
   <div class="col-lg-3 col-sm-6">
       <section class="panel">
           <div class="symbol terques">

@@ -47,41 +47,57 @@ class PagesController extends AppController {
  *	or MissingViewException in debug mode.
  */
 	public function display() {
-		$path = func_get_args();
+		$usuario = $this->Auth->user();
 
-		$this->loadModel('Usuario');
-        $this->set('usuarios', ($this->Usuario->find('count') - 1));
+		if($usuario['grupo_id'] == Configure::read('Sistema.aluno_id')){
 
-       // ; $this->loadModel('Post');
-        $this->set('posts', '200');
+			$this->loadModel('Aluno');
+	        $this->Aluno->create();
 
+	        $options = array('conditions' => array('usuario_id' =>  $usuario['id']));
+	        $this->Aluno->recursive = 2;
+	        $aluno = $this->Aluno->find('first', $options);
 
-		$count = count($path);
-		if (!$count) {
-			// return $this->redirect('/');
+	        foreach ($aluno['Turma']['Disciplina'] as $disciplina) {
+	        	
+	        	$disciplina_temp['Disciplina'] = $disciplina;
+	        	
+	        	$nota_aluno = 0;
+	        	foreach ($aluno['Nota'] as $nota) {
+	        		if($nota['Atividade']['disciplina_id'] == $disciplina['id']){
+	        			$nota_aluno += $nota['valor'];
+	        		}
+	        	}
+
+	        	$presenca_aluno = 0;
+	        	foreach ($aluno['Frequencia'] as $frequencia) {
+	        		if($frequencia['disciplina_id'] == $disciplina['id']){
+	        			$presenca_aluno += ($frequencia['presenca']) ? 1 : 0;
+	        		}
+	        	}
+
+	        	$disciplina_temp['Disciplina']['Nota'] = $nota_aluno;
+
+	        	$disciplina_temp['Disciplina']['Presenca'] = $presenca_aluno;
+
+	        	$dashboard[] = 	$disciplina_temp;
+	        }
+
+	        $this->set('dashboard', $dashboard);
+
+			$this->render('alunos');
+		}else if($usuario['grupo_id'] == Configure::read('Sistema.professor_id')){
+			$this->render('professores');
+		}else if($usuario['grupo_id'] == Configure::read('Sistema.diretor_id')){
+			$this->render('diretores');
 		}
-		$page = $subpage = $title_for_layout = null;
 
-		if (!empty($path[0])) {
-			$page = $path[0];
-		}
-		if (!empty($path[1])) {
-			$subpage = $path[1];
-		}
-		if (!empty($path[$count - 1])) {
-			$title_for_layout = Inflector::humanize($path[$count - 1]);
-		}
-		$this->set(compact('page', 'subpage', 'title_for_layout'));
 
-		try {
-			$this->render(implode('/', $path));
-		} catch (MissingViewException $e) {
-			if (Configure::read('debug')) {
-				throw $e;
-			}
-			throw new NotFoundException();
-		}
 	}
 
-	public function home(){}
+	public function home(){
+		$usuario = $this->Auth->user();
+
+		debug($usuario);die();
+	}
 }
