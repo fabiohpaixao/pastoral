@@ -18,7 +18,7 @@
                 <?php
                     
                     echo $this->Form->input('ra', array('value' => $ra));
-                    echo $this->Form->input('nome');
+                    echo $this->Form->input('nome', array('autofocus' => 'autofocus"'));
                     echo $this->Form->input('email');
                     echo $this->Form->input('confirmar_email', array('autocomplete' => 'false', 'type' => 'email'));
                     echo $this->Form->input('telefone', array('class' => 'tel form-control'));
