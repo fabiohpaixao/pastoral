@@ -17,8 +17,9 @@
               <div class="panel-body">
                 <?php
                     echo $this->Form->input('Disciplina.nome');
-                    echo $this->Form->input('Disciplina.turma_id', array('options' => $turmas, 'multiple' => false));
                     echo $this->Form->input('Disciplina.professor_id', array('options' => $professores, 'multiple' => false));
+                    echo $this->Form->input('Disciplina.turma_id', array('options' => $turmas, 'multiple' => false));
+                    echo $this->Form->input('Disciplina.periodo_id', array('options' => $periodos, 'multiple' => false));
                 ?>    
               </div>
           </section>

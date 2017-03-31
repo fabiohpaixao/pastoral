@@ -16,8 +16,9 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Turma</th>
                         <th>Professor</th>
+                        <th>Período</th>
+                        <th>Turma</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -25,7 +26,6 @@
                 <?php foreach ($disciplinas as $key => $disciplina): ?>
                     <tr class="<?php echo ($key % 2 == 0) ? 'odd' : ''; ?> gradeX">
                         <td><?php echo h($disciplina['Disciplina']['nome']); ?></td>
-                        <td><?php echo h($disciplina['Turma']['nome']); ?></td>
                         <?php if(isset($disciplina['Professor']['Usuario'])): ?>
                             <td>
                                 <?php
@@ -35,7 +35,8 @@
                         <?php else: ?>
                             <td></td>
                         <?php endif; ?>
-                       
+                        <td><?php echo h($disciplina['Periodo']['titulo']); ?></td>
+                        <td><?php echo h($disciplina['Turma']['nome']); ?></td>
                         <td class="actions">
                             <?php echo $this->Html->link(__('<i class="icon-pencil"></i> Editar'), array('action' => 'editar', $disciplina['Disciplina']['id']), array('class' => 'btn btn-info btn-shadow', 'escape' => false)); ?>
                             <?php echo $this->Form->postLink(__('<i class="icon-trash"></i> Excluir'), array('action' => 'excluir', $disciplina['Disciplina']['id']), array('class' => 'btn btn-danger btn-shadow', 'escape' => false), __('Tem certeza que deseja excluir o registro %s?', $disciplina['Disciplina']['nome'])); ?>

@@ -1,6 +1,6 @@
 <?php
 
-	$this->Html->addCrumb('Periodos');
+	$this->Html->addCrumb('Períodos');
 
 ?>
 <div class="row">
@@ -8,7 +8,7 @@
 
           <section class="panel">
               <header class="panel-heading clearfix">
-                  <span class="pull-left"><?php echo __('Usuários'); ?></span>
+                  <span class="pull-left"><?php echo __('Períodos'); ?></span>
 
                    <?php echo $this->Html->link(__('<i class="icon-plus"></i> Novo Usuário'), array('controller' => 'periodos', 'action' => 'adicionar'),array('class' => 'btn btn-success btn-shadow pull-right', 'escape' => false)); ?>
               </header>
