@@ -1,15 +1,15 @@
 <?php
 
-    $this->Html->addCrumb('Turmass', '/turmas');
+    $this->Html->addCrumb('Periodos', '/periodos');
     $this->Html->addCrumb('Editar');
 
 ?>
 <div class="row">
-    <?php echo $this->Form->create('Turma', array('action' => 'editar')); ?>
+    <?php echo $this->Form->create('Periodo', array('action' => 'editar')); ?>
     <div class="col-lg-9">
         <section class="panel">
             <header class="panel-heading clearfix">
-              <span class="pull-left"><i class="icon-plus"></i> <?php echo __('Editar Turma'); ?></span>
+              <span class="pull-left"><i class="icon-plus"></i> <?php echo __('Editar Periodo'); ?></span>
 
               <?php echo $this->Html->link(__('<i class="icon-chevron-left"></i> Voltar'), array('action' => 'index'), array('class' => 'btn btn-default btn-shadow pull-right', 'escape' => false)); ?>
 
@@ -17,7 +17,7 @@
               <div class="panel-body">
                 <?php
                     
-                  echo $this->Form->input('nome');
+                  echo $this->Form->input('titulo');
                   echo $this->Form->input('data_inicio',$this->CustomInputs->getInput('date'));
                   echo $this->Form->input('data_fim',$this->CustomInputs->getInput('date'));
                     
@@ -37,16 +37,20 @@
                 <?php echo $this->Form->button('<i class="icon-refresh"></i> Limpar', array('type' => 'reset', 'class' => 'btn btn-default btn-shadow', 'escape' => false)); ?>
             </div>
         </section>
-
+        
         <section class="panel">
             <header class="panel-heading clearfix">
               <span class="pull-left"><i class="icon-th-large"></i> Opçoes</span>
             </header>
             <div class="panel-body">
-                <?php echo $this->Form->input('periodo_id'); ?>
+                <?php 
+                    echo $this->Form->input('ativo', array(
+                        'checked' => 'checked',
+                        'between' => '<div class="col-sm-9"><div class="switch switch-square">', 
+                        'after' => '</div></div>'));
+                ?>
             </div>
         </section>
-
     </div>
      <?php echo $this->Form->end(); ?>
 </div>

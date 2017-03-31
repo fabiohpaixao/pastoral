@@ -35,6 +35,14 @@
                 <?php echo $this->Form->button('<i class="icon-refresh"></i> Limpar', array('type' => 'reset', 'class' => 'btn btn-default btn-shadow', 'escape' => false)); ?>
             </div>
         </section>
+        <section class="panel">
+            <header class="panel-heading clearfix">
+              <span class="pull-left"><i class="icon-th-large"></i> Opçoes</span>
+            </header>
+            <div class="panel-body">
+                <?php echo $this->Form->input('periodo_id'); ?>
+            </div>
+        </section>
 
     </div>
      <?php echo $this->Form->end(); ?>

@@ -46,6 +46,15 @@ class Turma extends AppModel {
 			)
     );
 
+    public $belongsTo = array (
+        'Periodo' => array (
+            'className' => 'Periodo',
+            'foreignKey' => 'periodo_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        )
+    );
 	/**
 	* Valiaveis
 	*/
