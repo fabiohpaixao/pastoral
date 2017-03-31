@@ -52,6 +52,9 @@ class DisciplinasController extends AppController {
             $turmas = $this->Disciplina->Turma->find('list');
             $this->set('turmas', $turmas);
 
+            $periodos = $this->Disciplina->Periodo->find('list');
+            $this->set('periodos', $periodos);
+
             $professores = $this->Disciplina->Professor->find('list', array('recursive' => 1, 'fields' => 'Professor.id, Usuario.nome'));
             
             
@@ -94,6 +97,10 @@ class DisciplinasController extends AppController {
 
             $turmas = $this->Disciplina->Turma->find('list');
             $this->set('turmas', $turmas);
+            
+            $periodos = $this->Disciplina->Periodo->find('list');
+            $this->set('periodos', $periodos);
+
             
             $professores = $this->Disciplina->Professor->find('list', array('recursive' => 1, 'fields' => 'Professor.id, Usuario.nome'));
             
