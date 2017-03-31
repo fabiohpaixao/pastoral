@@ -43,6 +43,16 @@ class TurmasController extends AppController {
                 $this->Session->setFlash('Ocorreu um erro ao tentar salvar o turma letivo, tente novamente', 'Flash/erro');
 
         }
+
+        $periodos = $this->Turma->Periodo->find('list',
+            array(
+                 'fields' => array(
+                    'Periodo.id',
+                    'Periodo.titulo'
+                )
+            )
+        );
+        $this->set(compact('periodos'));
     }
 
 /**
@@ -70,6 +80,16 @@ class TurmasController extends AppController {
             $options = array('conditions' => array('Turma.' . $this->Turma->primaryKey => $id));
             $this->request->data = $this->Turma->find('first', $options);
             $this->set('turma', $this->Turma->find('first', $options));
+
+            $periodos = $this->Turma->Periodo->find('list',
+                array(
+                     'fields' => array(
+                        'Periodo.id',
+                        'Periodo.titulo'
+                    )
+                )
+            );
+            $this->set(compact('periodos'));
         }
     }
 }
