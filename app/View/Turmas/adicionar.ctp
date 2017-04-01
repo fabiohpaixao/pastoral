@@ -1,6 +1,6 @@
 <?php
 
-    $this->Html->addCrumb('Turmass', '/turmas');
+    $this->Html->addCrumb('Turmas', '/turmas');
     $this->Html->addCrumb('Adicionar');
 
 ?>

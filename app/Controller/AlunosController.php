@@ -195,9 +195,12 @@ class AlunosController extends AppController {
         $this->set(compact('turmas'));
 
         if ($this->request->is(array('post', 'put'))) {
-			if ($this->Aluno->Usuario->save($this->request->data, array('fieldList' => array('Usuario' => array('nome', 'email', 'telefone', 'avatar'))))) {
+			if (
+                $this->Aluno->save($this->request->data, array('fieldList' => array('Aluno' => array('turma_id')))) && 
+                $this->Aluno->Usuario->save($this->request->data, array('fieldList' => array('Usuario' => array('nome', 'email', 'telefone', 'avatar'))))) {
 				$this->Session->setFlash(__('Aluno salvo com sucesso'), 'Flash/sucesso');
-                return $this->redirect(array('action' => 'index'));
+                
+                $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Não foi possivel salvar o aluno, tente novamente'),  'Flash/erro');
 			}
