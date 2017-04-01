@@ -10,7 +10,7 @@
               <header class="panel-heading clearfix">
                   <span class="pull-left"><?php echo __('Períodos'); ?></span>
 
-                   <?php echo $this->Html->link(__('<i class="icon-plus"></i> Novo Usuário'), array('controller' => 'periodos', 'action' => 'adicionar'),array('class' => 'btn btn-success btn-shadow pull-right', 'escape' => false)); ?>
+                   <?php echo $this->Html->link(__('<i class="icon-plus"></i> Novo Período'), array('controller' => 'periodos', 'action' => 'adicionar'),array('class' => 'btn btn-success btn-shadow pull-right', 'escape' => false)); ?>
               </header>
 
           		<table class="table table-striped border-top table-hover" id="table">

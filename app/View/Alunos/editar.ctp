@@ -67,9 +67,11 @@
               <span class="pull-left"><i class="icon-th-large"></i> Opçoes</span>
             </header>
             <div class="panel-body">
-                <?php echo $this->Form->input('Usuario.ativo', array(
+                <?php
+                  echo $this->Form->input('Usuario.ativo', array(
                         'between' => '<div class="col-sm-9"><div class="switch switch-square">', 
                         'after' => '</div></div>'));
+                  echo $this->Form->input('turma_id'); 
                 ?>
             </div>
         </section>
