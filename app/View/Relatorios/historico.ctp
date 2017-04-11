@@ -10,7 +10,7 @@
 	    $pdf->Cell(90,4,$disciplina['Disciplina']['nome'],1,1,'L');
 	}
 	 
-	$pdf->Output('doc.pdf', 'I');
+	$pdf->Output($titulo . '.pdf', 'D');
 	//$pdf->Output('doc.pdf', 'D');
 
 ?>
