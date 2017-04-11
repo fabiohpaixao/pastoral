@@ -33,7 +33,7 @@ class FrequenciasController extends AppController {
         $this->loadModel('Disciplina');
         $this->Disciplina->create();
         
-        $options = array('conditions' => array('usuario_id' =>  $usuario['id']));
+        $options = ($usuario['grupo_id'] != Configure::read('Sistema.diretor_id') && $usuario['grupo_id'] != Configure::read('Sistema.administrador_id')) ? array('conditions' => array('usuario_id' =>  $usuario['id'])) : array();
         $this->Disciplina->recursive = 1;
         $disciplinas = $this->Disciplina->find('all', $options);
 

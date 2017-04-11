@@ -1,2 +1,3 @@
 app/tmp
 MODEL_DB/*.sql
+app/Config/core\.php
