@@ -90,9 +90,7 @@ class UsuariosController extends AppController {
 
 
             $token = Security::hash(String::uuid(),'sha1',true);
-            $url = Configure::read('Site.url') . Router::url(array('controller' => 'usuarios', 'action' => 'redefinir')) .'/'.
-                   $usuario['Usuario']['id'] . '/' .
-                   $token;
+            $url = substr(Configure::read('Site.url'), 0, -1) . Router::url(array('controller' => 'usuarios', 'action' => 'redefinir')) .'/'. $usuario['Usuario']['id'] . '/' . $token;
 
             $Email = new CakeEmail();
             $Email->config('smtp')
