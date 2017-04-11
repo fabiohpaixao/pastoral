@@ -4,6 +4,7 @@ App::uses('AppController', 'Controller');
 
 class RelatoriosController extends AppController
 {
+	public $components = array('RequestHandler'); 
 
 	public function historico(){
 
@@ -13,7 +14,9 @@ class RelatoriosController extends AppController
 		$disciplinas = $disciplina->find('all');
 
 		$this->set(compact($disciplinas, 'disciplinas'));
+		$this->set('titulo', 'Historico por aluno');
 
 		$this->layout = 'pdf';
+
 	}
 }
