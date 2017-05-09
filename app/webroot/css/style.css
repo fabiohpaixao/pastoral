@@ -3977,15 +3977,12 @@ span.customSelect.changed {
 }
 
 
-/*areas*/
-/*
-.table-ditribuidores input{
-    border: none;
-    background: transparent;
-    padding: 0;
-    margin: 0;
-    border-color: transparent;
-    box-shadow: none;
-    font-size: 13px;
-    height: auto;
-}*/
+/*accordion*/
+
+.accordion h3{
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    background-color: #22bacf !important;
+    color: #fff;
+    font-size: 12px !important;
+}
