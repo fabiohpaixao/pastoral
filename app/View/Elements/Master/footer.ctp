@@ -81,6 +81,9 @@
         
         //toastr
         echo $this->Html->script('/js/../assets/toastr/js/toastr.min');
+    
+        //jquery-ui
+        echo $this->Html->script('/js/jquery-ui.min');
 
         //Render
         echo $this->Html->script('/js/common-scripts');

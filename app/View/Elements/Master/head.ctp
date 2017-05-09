@@ -49,10 +49,13 @@
         <link rel="stylesheet" type="text/css" href="Select-1.2.0/css/select.bootstrap.min.css"/>
         */
        
+        //jquery-ui
+        echo $this->Html->css('/css/jquery-ui.min');
 
         //Custom styles for this template (index)
         echo $this->Html->css('/css/style.css');
         echo $this->Html->css('/css/style-responsive.css');
+
 
         //render
         echo $this->fetch('meta');

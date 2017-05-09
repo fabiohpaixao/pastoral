@@ -133,21 +133,64 @@
                                     <input name="data[Frequencia][data]" class="form-control" type="date" id="FrequenciaData" required="required">
                                 </div>
                             </div>
-                            <?php
-                                //echo $this->Form->input('Frequencia.data', $this->CustomInputs->getInput('date'));
-                                echo $this->Form->input('Frequencia.disciplina_id', array('type' => 'hidden', 'value' => $disciplinas[0]['Disciplina']['id']));
-                                foreach ($alunos as $aluno):
-                                    echo $this->Form->input('Frequencia.presenca', array(
-                                        'name' => 'data[Frequencia][presenca][]',
-                                        'label' => $aluno['Usuario']['nome'],
-                                        'value' => $aluno['Aluno']['id'],
-                                        'checked' => 'checked',
-                                        'multiple' => 'checkbox',
-                                        'between' => '<div class="col-sm-9"><div class="switch switch-square">', 
-                                        'after' => '</div></div>')
-                                    );
-                                endforeach; 
-                            ?>
+                            <div class="form-group required">
+                                <div class="accordion">
+                                    <h3>Primeira Aula</h3>
+                                    <div>
+                                        <?php
+                                            //echo $this->Form->input('Frequencia.data', $this->CustomInputs->getInput('date'));
+                                            echo $this->Form->input('Frequencia.disciplina_id', array('type' => 'hidden', 'value' => $disciplinas[0]['Disciplina']['id']));
+                                            foreach ($alunos as $aluno):
+                                                echo $this->Form->input('Frequencia.presenca', array(
+                                                    'name' => 'data[Frequencia][presenca][]',
+                                                    'label' => $aluno['Usuario']['nome'],
+                                                    'value' => $aluno['Aluno']['id'],
+                                                    'checked' => 'checked',
+                                                    'multiple' => 'checkbox',
+                                                    'between' => '<div class="col-sm-9"><div class="switch switch-square">', 
+                                                    'after' => '</div></div>')
+                                                );
+                                            endforeach; 
+                                        ?>
+                                    </div>
+                                     <h3>Segunda Aula</h3>
+                                    <div>
+                                        <?php
+                                            //echo $this->Form->input('Frequencia.data', $this->CustomInputs->getInput('date'));
+                                            echo $this->Form->input('Frequencia.disciplina_id', array('type' => 'hidden', 'value' => $disciplinas[0]['Disciplina']['id']));
+                                            foreach ($alunos as $aluno):
+                                                echo $this->Form->input('Frequencia.presenca', array(
+                                                    'name' => 'data[Frequencia][presenca][]',
+                                                    'label' => $aluno['Usuario']['nome'],
+                                                    'value' => $aluno['Aluno']['id'],
+                                                    'checked' => 'checked',
+                                                    'multiple' => 'checkbox',
+                                                    'between' => '<div class="col-sm-9"><div class="switch switch-square">', 
+                                                    'after' => '</div></div>')
+                                                );
+                                            endforeach; 
+                                        ?>
+                                    </div>
+                                    <h3>Terceira Aula</h3>
+                                    <div>
+                                        <?php
+                                            //echo $this->Form->input('Frequencia.data', $this->CustomInputs->getInput('date'));
+                                            echo $this->Form->input('Frequencia.disciplina_id', array('type' => 'hidden', 'value' => $disciplinas[0]['Disciplina']['id']));
+                                            foreach ($alunos as $aluno):
+                                                echo $this->Form->input('Frequencia.presenca', array(
+                                                    'name' => 'data[Frequencia][presenca][]',
+                                                    'label' => $aluno['Usuario']['nome'],
+                                                    'value' => $aluno['Aluno']['id'],
+                                                    'checked' => 'checked',
+                                                    'multiple' => 'checkbox',
+                                                    'between' => '<div class="col-sm-9"><div class="switch switch-square">', 
+                                                    'after' => '</div></div>')
+                                                );
+                                            endforeach; 
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>
