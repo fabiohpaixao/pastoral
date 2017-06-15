@@ -72,7 +72,7 @@ class FrequenciasController extends AppController {
         $frequencias = $this->request->data;
         //debug($frequencias); die();
         
-        $novaFrequencia = [];
+        $novaFrequencia = array();
         
         foreach ($frequencias['Frequencia']['presenca'] as $frequencia) {
             if(!$frequencia) continue;

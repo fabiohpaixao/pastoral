@@ -115,6 +115,7 @@ Configure::write('Sistema.nome','CURSOS');
 Configure::write('Sistema.aluno_id','6');
 Configure::write('Sistema.professor_id','4');
 Configure::write('Sistema.diretor_id','5');
+Configure::write('Sistema.administrador_id','1');
 
 /**
  * Configures default file logging options
