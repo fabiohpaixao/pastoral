@@ -55,7 +55,8 @@
                                         Frequencias de <?= $disciplina['Disciplina']['nome'] ?>
                                     </header>
                                     <div class="panel-body">
-                                      <a type="button" class="btn btn-success pull-right" data-toggle="modal" href="#modal-frequencia"><i class="icon-plus"></i> Adicionar Frequência </a>
+                                      <!--<a type="button" class="btn btn-success pull-right" data-toggle="modal" href="#modal-frequencia"><i class="icon-plus"></i> Adicionar Frequência </a>-->
+                                      <?php echo $this->Html->link(__('<i class="icon-plus"></i> Adicionar Frequência'), array('controller' => 'frequencias', 'action' => 'adicionar'),array('class' => 'btn btn-success btn-shadow pull-right', 'escape' => false)); ?>
                                       <table class="table table-striped table-advance table-hover">
                                           <thead>
                                           <tr>
